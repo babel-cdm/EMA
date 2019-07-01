@@ -1,0 +1,5 @@
+include ':app',
+        ':easymvvm-android',
+        ':easymvvm-core',
+        ':easymvvm-testing-core',
+        ':easymvvm-testing-android'
