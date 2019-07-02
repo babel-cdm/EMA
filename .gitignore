@@ -1,12 +1,10 @@
 *.iml
-/gradle/wrapper
 .gradle/
 /local.properties
 /.idea
 .DS_Store
 /build
 /captures
-gradlew
 *.bat
 .externalNativeBuild
 *.ser
