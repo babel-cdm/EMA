@@ -1,6 +1,6 @@
 package es.babel.ema.presentation.dialog.simple
 
-import es.babel.ema.presentation.dialog.DialogListener
+import es.babel.easymvvm.core.dialog.EmaDialogListener
 
 /**
  * Listener based on back OS button or confirm click
@@ -11,7 +11,8 @@ import es.babel.ema.presentation.dialog.DialogListener
  *
  * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
  */
-interface SimpleDialogListener : DialogListener {
+interface SimpleDialogListener : EmaDialogListener {
     fun onCancelClicked()
+    fun onConfirmClicked()
 
 }

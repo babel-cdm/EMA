@@ -3,10 +3,10 @@ package es.babel.ema.presentation.injection
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import es.babel.easymvvm.android.ui.dialog.EmaBaseDialogProvider
 import es.babel.ema.MockRepository
 import es.babel.ema.domain.repository.Repository
 import es.babel.ema.domain.usecase.LoginUseCase
-import es.babel.ema.presentation.dialog.DialogProvider
 import es.babel.ema.presentation.dialog.loading.LoadingDialogProvider
 import es.babel.ema.presentation.dialog.simple.SimpleDialogProvider
 import es.babel.ema.presentation.ui.emaway.home.EmaHomeActivity
@@ -33,9 +33,9 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
 
     bind<Repository>() with provider { MockRepository() }
 
-    bind<DialogProvider>(tag = "SIMPLE") with provider { SimpleDialogProvider(instance()) }
+    bind<EmaBaseDialogProvider>(tag = "SIMPLE") with provider { SimpleDialogProvider(instance()) }
 
-    bind<DialogProvider>(tag = "LOADING") with provider { LoadingDialogProvider(instance()) }
+    bind<EmaBaseDialogProvider>(tag = "LOADING") with provider { LoadingDialogProvider(instance()) }
 
     bind<EmaHomeNavigator>() with singleton { EmaHomeNavigator(instance()) }
 

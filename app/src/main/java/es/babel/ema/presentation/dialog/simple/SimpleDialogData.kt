@@ -1,7 +1,7 @@
 package es.babel.ema.presentation.dialog.simple
 
 import android.graphics.drawable.Drawable
-import es.babel.ema.presentation.dialog.DialogData
+import es.babel.easymvvm.core.dialog.EmaDialogData
 
 
 /**
@@ -17,7 +17,9 @@ import es.babel.ema.presentation.dialog.DialogData
 data class SimpleDialogData(
         val title: String = "",
         val message: String = "",
-        val accept:String= "",
-        val cancel:String = "",
-        val showCross:Boolean = true,
-        val image: Drawable? = null) : DialogData
+        val accept: String = "",
+        val cancel: String = "",
+        val showCross: Boolean = true,
+        val image: Drawable? = null,
+        override val proportionWidth: Float? = null,
+        override val proportionHeight: Float? = null) : EmaDialogData

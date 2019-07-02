@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.carmabs.ema.R
+import es.babel.easymvvm.core.dialog.EmaDialogProvider
 import es.babel.ema.MockRepository
 import es.babel.ema.domain.exception.LoginException
 import es.babel.ema.domain.exception.PasswordEmptyException
@@ -20,7 +21,6 @@ import es.babel.ema.domain.exception.UserEmptyException
 import es.babel.ema.domain.model.LoginRequest
 import es.babel.ema.domain.model.User
 import es.babel.ema.domain.usecase.LoginUseCase
-import es.babel.ema.presentation.dialog.DialogProvider
 import es.babel.ema.presentation.dialog.loading.LoadingDialogData
 import es.babel.ema.presentation.dialog.loading.LoadingDialogProvider
 import es.babel.ema.presentation.dialog.simple.SimpleDialogData
@@ -41,9 +41,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private val dialogError: DialogProvider by lazy {
-        val dialog = SimpleDialogProvider(fragmentManager!!)
-        dialog.setDialogListener(object : SimpleDialogListener {
+    private val dialogError: EmaDialogProvider by lazy {
+        val dialog = SimpleDialogProvider(requireFragmentManager())
+        dialog.dialogListener = object : SimpleDialogListener {
             override fun onCancelClicked() {
                 viewModel.onActionDialogErrorCancel()
             }
@@ -55,12 +55,12 @@ class HomeFragment : Fragment() {
             override fun onConfirmClicked() {
                 viewModel.onActionDialogErrorAccept()
             }
-        })
+        }
         dialog
     }
 
-    private val dialogLoading: DialogProvider by lazy {
-        LoadingDialogProvider(fragmentManager!!)
+    private val dialogLoading: EmaDialogProvider by lazy {
+        LoadingDialogProvider(requireFragmentManager())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
