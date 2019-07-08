@@ -20,6 +20,7 @@ class DefaultConcurrencyManager : ConcurrencyManager {
     override fun launch(dispatcher: CoroutineDispatcher, block: suspend CoroutineScope.() -> Unit): Job {
         val job = SupervisorJob()
         val scope = CoroutineScope(dispatcher + job)
+        jobList.add(job)
         job.invokeOnCompletion { jobList.remove(job) }
         scope.launch { block.invoke(this) }
         return job
