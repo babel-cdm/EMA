@@ -1,7 +1,8 @@
 package es.babel.ema.presentation.dialog.loading
+
 import android.view.View
 import com.carmabs.ema.R
-import es.babel.ema.presentation.dialog.base.BaseDialog
+import es.babel.easymvvm.android.ui.dialog.EmaBaseDialog
 import kotlinx.android.synthetic.main.dialog_loading.view.*
 
 /**
@@ -13,17 +14,15 @@ import kotlinx.android.synthetic.main.dialog_loading.view.*
  *
  * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
  */
-class LoadingDialog : BaseDialog() {
+class LoadingDialog : EmaBaseDialog<LoadingDialogData>() {
 
     override fun getLayout(): Int {
         return R.layout.dialog_loading
     }
 
-    override fun setupUI(view: View) {
-        (data as? LoadingDialogData)?.let {
-            view.tvDialogLoadingTitle.text = it.title
-            view.tvDialogLoadingMessage.text = it.message
-        }
+    override fun setupData(data: LoadingDialogData, view: View) {
+        view.tvDialogLoadingTitle.text = data.title
+        view.tvDialogLoadingMessage.text = data.message
 
         isCancelable = true
     }

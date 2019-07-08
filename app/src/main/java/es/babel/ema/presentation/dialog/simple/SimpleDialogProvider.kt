@@ -1,8 +1,8 @@
 package es.babel.ema.presentation.dialog.simple
 
 import androidx.fragment.app.FragmentManager
-import es.babel.ema.presentation.dialog.base.BaseDialog
-import es.babel.ema.presentation.dialog.base.BaseDialogProvider
+import es.babel.easymvvm.android.ui.dialog.EmaBaseDialog
+import es.babel.easymvvm.android.ui.dialog.EmaBaseDialogProvider
 
 /**
  * Simple dialog implementation
@@ -14,6 +14,6 @@ import es.babel.ema.presentation.dialog.base.BaseDialogProvider
  * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
  */
 
-class SimpleDialogProvider constructor(fragmentManager: FragmentManager) : BaseDialogProvider(fragmentManager) {
-    override fun generateDialog(): BaseDialog = SimpleDialog()
+class SimpleDialogProvider constructor(fragmentManager: FragmentManager) : EmaBaseDialogProvider(fragmentManager) {
+    override fun generateDialog(): EmaBaseDialog<*> = SimpleDialog()
 }

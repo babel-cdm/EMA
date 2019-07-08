@@ -1,6 +1,6 @@
 package es.babel.ema.presentation.dialog.loading
 
-import es.babel.ema.presentation.dialog.DialogData
+import es.babel.easymvvm.core.dialog.EmaDialogData
 
 /**
  * TODO: Add a class header comment.
@@ -14,4 +14,6 @@ import es.babel.ema.presentation.dialog.DialogData
 
 data class LoadingDialogData(
         val title: String = "",
-        val message: String = "") : DialogData
+        val message: String = "",
+        override val proportionWidth: Float? = null,
+        override val proportionHeight: Float? = null) : EmaDialogData

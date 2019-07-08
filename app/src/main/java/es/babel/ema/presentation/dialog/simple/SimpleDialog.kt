@@ -2,7 +2,7 @@ package es.babel.ema.presentation.dialog.simple
 
 import android.view.View
 import com.carmabs.ema.R
-import es.babel.ema.presentation.dialog.base.BaseDialog
+import es.babel.easymvvm.android.ui.dialog.EmaBaseDialog
 import kotlinx.android.synthetic.main.dialog_simple.view.*
 
 
@@ -15,22 +15,19 @@ import kotlinx.android.synthetic.main.dialog_simple.view.*
  *
  * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
  */
-class SimpleDialog : BaseDialog() {
+class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
 
     override fun getLayout(): Int {
         return R.layout.dialog_simple
     }
 
-    override fun setupUI(view: View) {
+    override fun setupData(data: SimpleDialogData, view: View) {
         (data as? SimpleDialogData)?.let {
             with(it){
-                view.bDialogSimpleYes.setOnClickListener {
-                    dialogListener?.onConfirmClicked()
-                }
-
                 (dialogListener as? SimpleDialogListener)?.let { listener ->
                     view.bDialogSimpleNo.setOnClickListener { listener.onCancelClicked() }
                     view.ivDialogSimpleCross.setOnClickListener { listener.onCancelClicked() }
+                    view.bDialogSimpleYes.setOnClickListener { listener.onConfirmClicked() }
                 }
 
                 view.tvDialogSimpleTitle!!.text = title

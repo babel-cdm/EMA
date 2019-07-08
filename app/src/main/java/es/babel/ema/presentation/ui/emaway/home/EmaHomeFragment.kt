@@ -7,11 +7,11 @@ import android.view.View
 import android.widget.TextView
 import com.carmabs.ema.R
 import es.babel.easymvvm.android.ui.EmaFragment
+import es.babel.easymvvm.core.dialog.EmaDialogProvider
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.ema.domain.exception.LoginException
 import es.babel.ema.domain.exception.PasswordEmptyException
 import es.babel.ema.domain.exception.UserEmptyException
-import es.babel.ema.presentation.dialog.DialogProvider
 import es.babel.ema.presentation.dialog.loading.LoadingDialogData
 import es.babel.ema.presentation.dialog.simple.SimpleDialogData
 import es.babel.ema.presentation.dialog.simple.SimpleDialogListener
@@ -40,9 +40,9 @@ class EmaHomeFragment : EmaFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavig
 
     override val navigator: EmaHomeNavigator  by instance()
 
-    private val errorDialog: DialogProvider by instance(tag = "SIMPLE")
+    private val errorDialog: EmaDialogProvider by instance(tag = "SIMPLE")
 
-    private val loadingDialog: DialogProvider by instance(tag = "LOADING")
+    private val loadingDialog: EmaDialogProvider by instance(tag = "LOADING")
 
     override fun onInitialized(viewModel: EmaHomeViewModel) {
         setupButtons(viewModel)
@@ -50,7 +50,7 @@ class EmaHomeFragment : EmaFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavig
     }
 
     private fun setupDialog(viewModel: EmaHomeViewModel) {
-        errorDialog.setDialogListener(object : SimpleDialogListener {
+        errorDialog.dialogListener  = object : SimpleDialogListener {
             override fun onCancelClicked() {
                 viewModel.onActionDialogErrorCancel()
             }
@@ -63,7 +63,7 @@ class EmaHomeFragment : EmaFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavig
                 viewModel.onActionDialogErrorAccept()
             }
 
-        })
+        }
     }
 
     private fun setupButtons(viewModel: EmaHomeViewModel) {
