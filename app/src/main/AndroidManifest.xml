@@ -15,7 +15,7 @@
           <activity android:name="com.carmabs.ema.presentation.ui.defaultvm.HomeActivity">
 
         </activity>
-        <activity android:name="com.carmabs.ema.es.babel.ema.presentation.ui.emaway.home.EmaHomeActivity">
+        <activity android:name="es.babel.ema.presentation.ui.emaway.home.EmaHomeActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
 
