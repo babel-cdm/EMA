@@ -22,26 +22,30 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation project(":easymvvm-android")
+    implementation project(":easymvvm-core")
     implementation project(":easymvvm-testing-core")
 
     //androidTest
+    implementation emaTesting.lifecycle
     implementation emaTesting.core
     implementation emaTesting.coreKotlin
     implementation emaTesting.junit
     implementation emaTesting.junitKotlin
     implementation emaTesting.rules
     implementation emaTesting.mockito
-    implementation emaAndroid.espresso
+    implementation emaTesting.espresso
     implementation emaTesting.archTesting
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation emaTesting.kotlin
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
 repositories {
     mavenCentral()
 }

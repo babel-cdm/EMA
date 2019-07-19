@@ -1,9 +1,8 @@
 package es.babel.easymvvm.core.usecase
 
-import es.babel.easymvvm.core.concurrency.AsyncManager
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Base class to handle every use case.
@@ -16,16 +15,15 @@ import kotlinx.coroutines.Dispatchers
 /**
  * @param I Input. Must be the model object that the use case can use to make the request
  * @param O Output.Must be the model object that the use case must return
- * @constructor An AsyncManager must be provided to handle the background tasks
  */
-abstract class EmaUseCase<I, O>(private val asyncManager: AsyncManager) {
+abstract class EmaUseCase<I, O> {
 
     /**
-     * Executes a function inside a background thread provided by AsyncManager
-     * @return the deferred object with the return value
+     * Executes a function inside a background thread provided by dispatcher
+     * @return the object with the return value
      */
-    suspend fun execute(input: I): Deferred<O> {
-        return asyncManager.async(dispatcher) { useCaseFunction(input) }
+    suspend fun execute(input: I): O {
+        return withContext(dispatcher) { useCaseFunction(input) }
     }
 
     /**
