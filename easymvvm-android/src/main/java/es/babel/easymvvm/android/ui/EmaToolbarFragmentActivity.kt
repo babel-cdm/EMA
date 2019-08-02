@@ -12,6 +12,12 @@ import es.babel.easymvvm.android.R
  */
 abstract class EmaToolbarFragmentActivity : EmaFragmentActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        //To enable support action bar
+        if(!overrideTheme) setTheme(R.style.EmaTheme_NoActionBar)
+        super.onCreate(savedInstanceState)
+    }
+
     /**
      * The toobar for the activity
      */
@@ -73,4 +79,9 @@ abstract class EmaToolbarFragmentActivity : EmaFragmentActivity() {
     override fun getLayout(): Int {
         return R.layout.ema_toolbar_activity
     }
+
+    /**
+     * Set true if activity use a custom theme to avoid the EmaTheme_NoActionBar theme set up
+     */
+    protected open val overrideTheme = false
 }
