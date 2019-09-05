@@ -7,8 +7,8 @@ import es.babel.easymvvm.core.state.EmaBaseState
  * Created by: cmateob on 20/1/19.
  */
 data class EmaHomeState(
-        val userName:String="",
-        val userPassword:String="",
-        val showPassword:Boolean=false,
-        val rememberuser:Boolean=false
-        ) : EmaBaseState
+        val userName: String = "",
+        val userPassword: String = "",
+        val showPassword: Boolean = false,
+        val rememberuser: Boolean = false
+) : EmaBaseState

@@ -15,6 +15,7 @@ import es.babel.ema.domain.exception.UserEmptyException
 import es.babel.ema.presentation.dialog.loading.LoadingDialogData
 import es.babel.ema.presentation.dialog.simple.SimpleDialogData
 import es.babel.ema.presentation.dialog.simple.SimpleDialogListener
+import es.babel.ema.presentation.dialog.simple.SimpleDialogProvider
 import es.babel.ema.presentation.injection.fragmentInjection
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_password.*
@@ -34,13 +35,13 @@ class EmaHomeFragment : EmaFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavig
 
     override fun getFragmentLayout(): Int = R.layout.fragment_home
 
-    override fun injectFragmentModule(kodein: Kodein.MainBuilder): Kodein.Module = fragmentInjection(this)
+    override fun injectFragmentModule(kodein: Kodein.MainBuilder): Kodein.Module? = fragmentInjection(this)
 
     override val viewModelSeed: EmaHomeViewModel by instance()
 
     override val navigator: EmaHomeNavigator  by instance()
 
-    private val errorDialog: EmaDialogProvider by instance(tag = "SIMPLE")
+    private val errorDialog: EmaDialogProvider =  SimpleDialogProvider(requireFragmentManager())
 
     private val loadingDialog: EmaDialogProvider by instance(tag = "LOADING")
 

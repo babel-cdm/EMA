@@ -22,8 +22,7 @@ class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
     }
 
     override fun setupData(data: SimpleDialogData, view: View) {
-        (data as? SimpleDialogData)?.let {
-            with(it){
+            with(data){
                 (dialogListener as? SimpleDialogListener)?.let { listener ->
                     view.bDialogSimpleNo.setOnClickListener { listener.onCancelClicked() }
                     view.ivDialogSimpleCross.setOnClickListener { listener.onCancelClicked() }
@@ -53,6 +52,5 @@ class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
 
                 isCancelable = true
             }
-        }
     }
 }
