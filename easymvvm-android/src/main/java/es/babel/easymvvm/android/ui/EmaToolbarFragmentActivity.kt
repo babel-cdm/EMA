@@ -14,7 +14,7 @@ abstract class EmaToolbarFragmentActivity : EmaFragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //To enable support action bar
-        if(!overrideTheme) setTheme(R.style.EmaTheme_NoActionBar)
+        if (!overrideTheme) setTheme(R.style.EmaTheme_NoActionBar)
         super.onCreate(savedInstanceState)
     }
 
@@ -51,6 +51,7 @@ abstract class EmaToolbarFragmentActivity : EmaFragmentActivity() {
         setSupportActionBar(tbToolbar)
         toolbarLayout = lToolbar
         toolbar = tbToolbar
+        getToolbarTitle()?.let { supportActionBar?.title = it }
         setupActionBarWithNavController(navController)
     }
 
