@@ -448,6 +448,16 @@ The main features of ***EmaViewFragment*** are:
 	- ***fragmentViewModelScope*** **= FALSE**
 
 		The **ViewModel is attached to the activity**, so it is created when the activity is created and destroyed the the activity is destroyed. This can be used as well to share data between fragments due to the activity viewmodel attached to the activity will be kept in memory until the activity is destroyed.
+		
+* **<a name="ema-viewmodel-add-extra">Add additional ViewModels</a>**
+
+	A fragment can need to listen events from its parent class container or other view, for example the updates of an activity toolbar, for that reason **extra ViewModels** can be attached to the fragment. To do that, you can use the method:
+
+	-	***addExtraViewModel() : EmaViewModel***
+
+	You must provide the listener function which will receive the <mark>extra **ViewModel** state updates</mark>, and the method will return the view model attached, this way you can use it if you want to **modify some behaviour defined in the parent container class ViewModel**.
+	
+		
 
 ### <a name="ema-activity">EMA VIEW ACTIVITY</a>
 
@@ -1177,7 +1187,7 @@ The repositories should be accessed directly. It must be accessed thorough an Us
 
 ## <a name="ema-tools_dialog_providers">DIALOG PROVIDERS</a>
 
-EMA provides a dialog manager to handle dialog management by a single interface. This will make possible launch different dialogs by the following way:
+**EMA** provides a dialog manager to handle dialog management by a single interface. This will make possible launch different dialogs by the following way:
 
 ~~~ kotlin
 class EmaHomeFragment : EmaFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavigator.Navigation>() {
@@ -1362,6 +1372,85 @@ class SimpleDialogProvider constructor(fragmentManager: FragmentManager) : EmaBa
 
 **With dialog provider we can simplify the dialog management and make them interchangeable. It has support as well for configuration changes, so the dialog will remain in the same state after a device rotation, for example, that is a common problem in Android.**
 
+## <a name="ema-tools_concurrency_manager">CONCURRENCY MANAGERS</a>
+
+For background tasks, EMA provides a concurrency manager. To use it you can provide it by two ways:
+
+* By Kodein
+ 
+ 	~~~ kotlin
+ 	val concurrencyManager: ConcurrencyManager by 	instance()
+
+* By default instantiation
+
+ 	~~~kotlin
+ 	val concurrencyManager: ConcurrencyManager = 	DefaultConcurrencyManager()
+
+ 
+Once you have instantiated it you can do the following actions:
+
+- **Make background tasks:**
+
+	You can use the launch method to make a task in the background thread
+	
+	~~~kotlin
+	concurrencyManager.launch { 
+       //CODE EXECUTED IN BACKGROUND THREAD     
+   }
+	
+- **Define the background thread**
+
+	You can define the Dispatcher where the background task is going to be launched. By default is ***Dispatchers.Main***.
+	
+	~~~ kotlin
+	concurrencyManager.launch(dispatcher = Dispatchers.IO) { 
+       //CODE EXECUTED IN IO THREAD     
+   }
+
+- **Control Exception propagation**
+
+	You can control the **exception propagation** if an exception is produced inside a background task.
+	
+	If ***fullException*** is:
+	* *True:*
+	
+		An exception launched on some child task affects to the rest of tasks, including the parent one.
+	
+	* *False:*
+
+		Only affect to the child class.
+
+	See [Exception propagation](https://kotlinlang.org/docs/reference/coroutines/exception-handling.html#supervision) for more details.
+	
+	~~~ kotlin
+	concurrencyManager.launch(fullException = true)
+	
+- **Cancel all pending tasks**
+
+	You can cancel all executing pending tasks:
+	
+	~~~ kotlin
+	concurrencyManager.cancelPendingTasks()
+	
+- **Cancel a job**
+
+	You can cancel a job returned when launch a background task.
+	
+	~~~kotlin
+	val job = concurrencyManager.launch { 
+       //CODE EXECUTED IN BACKGROUND THREAD     
+   }
+   concurrencyManager.cancelTask(job)
+ 
+The same tasks can be achieved with ***[Deferred](https://kotlinlang.org/docs/reference/coroutines/composing-suspending-functions.html#concurrent-using-async)*** object using the ***AsyncManager*** .
+ 
+ ~~~kotlin
+ val asyncManager: AsyncManager by instance()
+ 	
+ or 
+ 	
+ val asyncManager: AsyncManager = DefaultAsyncManager()
+ ~~~
 	
 # EXTRA: EMA FEATURE TEMPLATE
 	
