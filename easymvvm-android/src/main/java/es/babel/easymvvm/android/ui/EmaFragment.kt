@@ -2,10 +2,17 @@ package es.babel.easymvvm.android.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import es.babel.easymvvm.android.viewmodel.EmaFactory
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.navigator.EmaNavigationState
 import es.babel.easymvvm.core.state.EmaBaseState
+import es.babel.easymvvm.core.state.EmaState
 
 
 /**
@@ -42,6 +49,11 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      */
     override val inputState: S? by lazy { getInState() }
 
+    /**
+     * The map which handles the view model attached with their respective scopes, to unbind the observers
+     * when the view fragment is destroyed
+     */
+    private val extraViewModelMap: HashMap<EmaViewModel<*, *>, LifecycleOwner> by lazy { HashMap<EmaViewModel<*,*>,LifecycleOwner>() }
 
     /**
      * The view model is instantiated on fragment creation
@@ -58,6 +70,28 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
                         null)
         }
 
+    }
+
+    /**
+     * Add a view model observer to current fragment
+     * @param viewModelAttachedSeed is the view model seed will used as factory instance if there is no previous
+     * view model retained by the OS
+     * @param fragment the fragment scope
+     * @param fragmentActivity the activity scope, if it is provided this will be the scope of the view model attached
+     * @param observerFunction the observer of the view model attached
+     * @return The view model attached
+     */
+    protected fun <AS, VM : EmaViewModel<AS, *>> addExtraViewModel(
+            viewModelAttachedSeed: VM,
+            fragment: Fragment,
+            fragmentActivity: FragmentActivity? = null,
+            observerFunction: (attachedState: EmaState<AS>) -> Unit): VM {
+        val viewModel = ViewModelProviders.of(requireActivity(), EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
+        val scope: LifecycleOwner = fragmentActivity ?: fragment
+        viewModel.getObservableState().observe(scope, Observer(observerFunction))
+        extraViewModelMap[viewModel] = scope
+
+        return viewModel
     }
 
     /**
@@ -79,8 +113,21 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      */
     override fun onDestroyView() {
         super.onDestroyView()
-        val owner: LifecycleOwner = if (fragmentViewModelScope) this else activity!!
+        val owner: LifecycleOwner = if (fragmentViewModelScope) this else requireActivity()
+        removeExtraViewModels()
         vm?.unBindObservables(owner)
+    }
+
+    /**
+     * Remove extra view models attached
+     */
+    private fun removeExtraViewModels() {
+        extraViewModelMap.forEach {
+            val viewModel = it.key
+            val scope = it.value
+            viewModel.unBindObservables(scope)
+        }
+        extraViewModelMap.clear()
     }
 
     /**
