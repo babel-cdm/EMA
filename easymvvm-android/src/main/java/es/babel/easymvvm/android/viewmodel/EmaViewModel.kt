@@ -40,10 +40,15 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
     /**
      * Check the current view state
      * @param checkStateFunction function to check the current state
+     * @return the value returned by [checkStateFunction]
      */
-    fun checkViewState(checkStateFunction: (S) -> Unit){
-        viewState?.run{
-            checkStateFunction.invoke(this)
+    fun <T> checkViewState(checkStateFunction: (S) -> T): T {
+        return viewState?.let {
+            checkStateFunction.invoke(it)
+        } ?: let {
+            val initialState = createInitialViewState()
+            viewState = initialState
+            checkStateFunction.invoke(initialState)
         }
     }
 
