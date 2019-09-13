@@ -53,7 +53,7 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      * The map which handles the view model attached with their respective scopes, to unbind the observers
      * when the view fragment is destroyed
      */
-    private val extraViewModelMap: HashMap<EmaViewModel<*, *>, LifecycleOwner> by lazy { HashMap<EmaViewModel<*,*>,LifecycleOwner>() }
+    private val extraViewModelMap: MutableList<EmaViewModel<*, *>> by lazy { mutableListOf<EmaViewModel<*, *>>() }
 
     /**
      * The view model is instantiated on fragment creation
@@ -85,11 +85,16 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
             viewModelAttachedSeed: VM,
             fragment: Fragment,
             fragmentActivity: FragmentActivity? = null,
-            observerFunction: (attachedState: EmaState<AS>) -> Unit): VM {
-        val viewModel = ViewModelProviders.of(requireActivity(), EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
-        val scope: LifecycleOwner = fragmentActivity ?: fragment
-        viewModel.getObservableState().observe(scope, Observer(observerFunction))
-        extraViewModelMap[viewModel] = scope
+            observerFunction: ((attachedState: EmaState<AS>) -> Unit)? = null): VM {
+        
+        val viewModel =
+                fragmentActivity?.let {
+                    ViewModelProviders.of(it, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
+                }
+                        ?: ViewModelProviders.of(fragment, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
+
+        observerFunction?.also { viewModel.getObservableState().observe(this, Observer(it)) }
+        extraViewModelMap.add(viewModel)
 
         return viewModel
     }
@@ -123,9 +128,7 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      */
     private fun removeExtraViewModels() {
         extraViewModelMap.forEach {
-            val viewModel = it.key
-            val scope = it.value
-            viewModel.unBindObservables(scope)
+            it.unBindObservables(this)
         }
         extraViewModelMap.clear()
     }
