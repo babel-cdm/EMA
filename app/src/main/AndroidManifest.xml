@@ -12,16 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-          <activity android:name="com.carmabs.ema.presentation.ui.defaultvm.HomeActivity">
 
-        </activity>
-        <activity android:name="es.babel.ema.presentation.ui.emaway.home.EmaHomeActivity">
+        <activity android:name="es.babel.ema.presentation.ui.home.EmaHomeActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
 
             <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
         </activity>
+        <activity android:name="es.babel.ema.presentation.ui.error.EmaErrorViewActivity" />
     </application>
 
 </manifest>
