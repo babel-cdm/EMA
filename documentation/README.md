@@ -348,6 +348,10 @@ These are the main features of ***EmaViewModel***:
 		This method is called only the first time the fragment/activity is created, if there is a recreation due to a configuration change, or the fragments/activities goes from background to foreground, this method is **not** called.
 
 		In resume, the method is called **only** when the fragment/activity is **added to the backstack**.
+	
+	**EMA Lifecycle**
+	
+	![EMA lifecycle](EmaLifecycle.png)
 
 ### <a name="ema-view_fragment">EMA VIEW FRAGMENT</a>
 
@@ -453,8 +457,9 @@ The main features of ***EmaViewFragment*** are:
 
 	A fragment can need to listen events from its parent class container or other view, for example the updates of an activity toolbar, for that reason **extra ViewModels** can be attached to the fragment. To do that, you can use the method:
 
-	-	***addExtraViewModel() : EmaViewModel***
-
+	 ~~~kotlin
+	 addExtraViewModel : EmaViewModel
+	 ~~~
 	You must provide the listener function which will receive the <mark>extra **ViewModel** state updates</mark>, and the method will return the view model attached, this way you can use it if you want to **modify some behaviour defined in the parent container class ViewModel**.
 	
 		
