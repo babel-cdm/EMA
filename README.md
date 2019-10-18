@@ -4,7 +4,7 @@
 
 This way you can create by a very easy and fast way robust and maintenable apps due to **EMA** support, it handles lots of classes that helps the developer to develop new features respecting the MVVM architecture.
 
-You can se the documentation [here](https://github.com/carlosmateo89/Ema/wiki).
+You can se the documentation [here](https://github.com/babel-cdm/EMA/wiki).
 
 # USE IT
 
