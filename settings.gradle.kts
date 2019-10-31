@@ -1,0 +1,11 @@
+include(
+        ":app",
+        ":injection",
+        ":data",
+        ":domain",
+        ":common",
+        ":easymvvm-android",
+        ":easymvvm-core",
+        ":easymvvm-testing-core",
+        ":easymvvm-testing-android"
+)
