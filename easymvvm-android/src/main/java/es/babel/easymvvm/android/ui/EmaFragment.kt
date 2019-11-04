@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import es.babel.easymvvm.android.viewmodel.EmaFactory
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.navigator.EmaNavigationState
@@ -89,9 +89,9 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
         
         val viewModel =
                 fragmentActivity?.let {
-                    ViewModelProviders.of(it, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
+                    ViewModelProvider(it, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
                 }
-                        ?: ViewModelProviders.of(fragment, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
+                        ?: ViewModelProvider(fragment, EmaFactory(viewModelAttachedSeed))[viewModelAttachedSeed::class.java]
 
         observerFunction?.also { viewModel.getObservableState().observe(this, Observer(it)) }
         extraViewModelMap.add(viewModel)

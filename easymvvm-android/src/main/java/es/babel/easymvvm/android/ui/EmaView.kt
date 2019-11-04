@@ -3,7 +3,7 @@ package es.babel.easymvvm.android.ui
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import es.babel.easymvvm.android.viewmodel.EmaFactory
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.navigator.EmaBaseNavigator
@@ -52,8 +52,8 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
     fun initializeViewModel(fragmentActivity: FragmentActivity, fragment: Fragment? = null) {
         val emaFactory = EmaFactory(viewModelSeed)
         val vm = fragment?.let {
-            ViewModelProviders.of(it, emaFactory)[viewModelSeed::class.java]
-        } ?: ViewModelProviders.of(fragmentActivity, emaFactory)[viewModelSeed::class.java]
+            ViewModelProvider(it, emaFactory)[viewModelSeed::class.java]
+        } ?: ViewModelProvider(fragmentActivity, emaFactory)[viewModelSeed::class.java]
 
         onViewModelInitalized(vm)
         vm.onStart(inputState?.let { EmaState.Normal(it) })
