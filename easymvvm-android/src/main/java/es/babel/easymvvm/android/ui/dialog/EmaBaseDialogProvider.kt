@@ -1,7 +1,6 @@
 package es.babel.easymvvm.android.ui.dialog
 
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import es.babel.easymvvm.core.dialog.EmaDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogListener
@@ -10,11 +9,8 @@ import es.babel.easymvvm.core.dialog.EmaDialogProvider
 /**
  * Simple dialog implementation
  *
- * <p>
- * Copyright (C) 2018Babel Sistemas de Información. All rights reserved.
- * </p>
  *
- * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
+ * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
 abstract class EmaBaseDialogProvider constructor(private val fragmentManager: FragmentManager) : EmaDialogProvider {
 
@@ -24,31 +20,41 @@ abstract class EmaBaseDialogProvider constructor(private val fragmentManager: Fr
 
     override fun show(dialogData: EmaDialogData?) {
 
-        if(dialog==null)
+        if (dialog == null)
             dialog = generateDialog() as EmaBaseDialog<EmaDialogData>
 
         dialog?.let { dialog ->
             dialog.dialogListener = dialogListener
             dialog.data = dialogData
-            if(!dialog.isVisible)
-                dialog.show(fragmentManager,javaClass.canonicalName.hashCode().toString())
+            if (!dialog.isVisible)
+                dialog.show(fragmentManager, getTag())
 
         }
     }
 
     override fun hide() {
         dialog?.let {
-            if(!it.isHidden) {
-                Log.d(this.javaClass.name,"Loading dialog totally hidden")
+            if (!it.isHidden) {
+                Log.d(this.javaClass.name, "Alternative dialog totally hidden")
                 it.dismissAllowingStateLoss()
             }
+        } ?: also { _ ->
+            val oldDialog = fragmentManager.findFragmentByTag(getTag())
+            oldDialog?.also {
+                fragmentManager.beginTransaction().remove(it).commit()
+            }
+
         }
         dialog = null
     }
 
     override var dialogListener: EmaDialogListener? = null
-            set(value) {
-                field = value
-                dialog?.dialogListener = value
-            }
+        set(value) {
+            field = value
+            dialog?.dialogListener = value
+        }
+
+    private fun getTag():String{
+        return javaClass.canonicalName.hashCode().toString()
+    }
 }

@@ -4,7 +4,7 @@ package es.babel.easymvvm.core.dialog
  * Abstract class to show a dialog
  *
  *
- * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
+ * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
 interface EmaDialogProvider {
 

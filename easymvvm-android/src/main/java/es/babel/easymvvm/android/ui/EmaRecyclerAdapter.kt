@@ -9,11 +9,9 @@ import java.lang.RuntimeException
 /**
  * Adapter to implement the list view interface in recycler views
  *
- * <p>
- * Copyright (c) 2019, Babel Sistemas de Información. All rights reserved.
- * </p>
+
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
 
 abstract class EmaRecyclerAdapter<I> : RecyclerView.Adapter<EmaViewHolder<I>>() {
@@ -46,7 +44,7 @@ abstract class EmaRecyclerAdapter<I> : RecyclerView.Adapter<EmaViewHolder<I>>() 
      * @param viewType of the item
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmaViewHolder<I> {
-        return enableMultiViewHolder?.invoke(parent, viewType)
+        return enableMultiViewHolder?.invoke(parent,viewType)
                 ?: EmaAdapterViewHolder(LayoutInflater.from(parent.context).inflate(layoutItemId
                         ?: throw RuntimeException("Please provide the id for layoutItemId"), parent, false), viewType)
     }
@@ -65,7 +63,7 @@ abstract class EmaRecyclerAdapter<I> : RecyclerView.Adapter<EmaViewHolder<I>>() 
      * Function to implement different viewHolders depending the viewType provided. Use only if you want to use different
      * views depending the item provided
      */
-    protected open val enableMultiViewHolder: ((view: ViewGroup, viewType: Int) -> EmaAdapterViewHolder)? = null
+    protected open val enableMultiViewHolder: ((view:ViewGroup,viewType:Int) -> EmaAdapterViewHolder)? = null
 
     /**
      * Update the adapter with a new list

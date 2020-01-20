@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 /**
  * AsyncManager implementation for coroutines
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
 class DefaultAsyncManager : AsyncManager {
@@ -22,7 +22,11 @@ class DefaultAsyncManager : AsyncManager {
      * @param fullException If its is true, an exception launched on some child task affects to the
      * rest of task, including the parent one, if it is false, only affect to the child class
      */
-    override suspend fun <T> async(dispatcher: CoroutineDispatcher, fullException: Boolean, block: suspend CoroutineScope.() -> T): Deferred<T> {
+    override suspend fun <T> async(
+        dispatcher: CoroutineDispatcher,
+        fullException: Boolean,
+        block: suspend CoroutineScope.() -> T
+    ): Deferred<T> {
         val job = if (fullException) Job() else SupervisorJob()
         val deferred: Deferred<T> = CoroutineScope(dispatcher + job).async { block() }
         synchronized(deferredList) {
@@ -33,7 +37,6 @@ class DefaultAsyncManager : AsyncManager {
                 }
             }
         }
-
         return deferred
     }
 
@@ -45,7 +48,11 @@ class DefaultAsyncManager : AsyncManager {
      * @param fullException If its is true, an exception launched on some child task affects to the
      * rest of task, including the parent one, if it is false, only affect to the child class
      */
-    override suspend fun <T> asyncAwait(dispatcher: CoroutineDispatcher, fullException: Boolean, block: suspend CoroutineScope.() -> T): T {
+    override suspend fun <T> asyncAwait(
+        dispatcher: CoroutineDispatcher,
+        fullException: Boolean,
+        block: suspend CoroutineScope.() -> T
+    ): T {
         return async(dispatcher, fullException, block).await()
     }
 
@@ -58,13 +65,9 @@ class DefaultAsyncManager : AsyncManager {
         synchronized(deferredList) {
             val jobPending = mutableListOf<Job>()
             jobPending.addAll(deferredList)
-            jobPending.forEach {
-                if (it.isActive)
-                    it.cancel()
-            }
+            jobPending.forEach { if (it.isActive) it.cancel() }
+            deferredList.clear()
         }
-
-        deferredList.clear()
     }
 
     /**

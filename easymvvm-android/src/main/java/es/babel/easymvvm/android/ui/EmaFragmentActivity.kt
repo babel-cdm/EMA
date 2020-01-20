@@ -9,16 +9,12 @@ import es.babel.easymvvm.android.R
 /**
  * Abstract class to handle navigation in activity
  *
- * <p>
- * Copyright (C) 2018 Babel Sistemas de Información. All rights reserved.
- * </p>
  *
  * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
 abstract class EmaFragmentActivity : EmaBaseActivity() {
 
-
-    override fun createActivity(savedInstanceState: Bundle?) {
+    override fun onCreateActivity(savedInstanceState: Bundle?) {
         setupNavigation()
     }
 
@@ -37,11 +33,12 @@ abstract class EmaFragmentActivity : EmaBaseActivity() {
         }
 
     }
+
     /**
      * Setup the navigation path for navigation architecture components
      */
     private fun setupNavigation() {
-        navController.setGraph(getNavGraph(),intent.extras)
+        navController.setGraph(getNavGraph(), intent.extras)
     }
 
 

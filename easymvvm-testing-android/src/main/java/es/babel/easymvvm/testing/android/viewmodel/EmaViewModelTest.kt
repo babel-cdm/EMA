@@ -11,7 +11,7 @@ import org.junit.rules.TestRule
  * Class for testing a View Model. Provide the execution threads for asynchronous task to make the
  * code testable
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
 abstract class EmaViewModelTest<VM : EmaBaseViewModel<*, *>> : EmaTest(){

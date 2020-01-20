@@ -525,7 +525,7 @@ Therefore, we must declare the class in the manifest:
 ~~~xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.carmabs.ema">
+          package="es.babel.ema">
 
     <application
         android:name="es.babel.ema.presentation.EmaSampleApplication"

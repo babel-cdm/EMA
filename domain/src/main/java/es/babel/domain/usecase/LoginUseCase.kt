@@ -1,26 +1,21 @@
 package es.babel.domain.usecase
 
-
 import es.babel.domain.model.LoginRequest
 import es.babel.domain.model.User
 import es.babel.domain.repository.Repository
+import es.babel.easymvvm.core.usecase.EmaUseCase
 
 
 /**
- * Login to LDA
+ * Login
  *
- * <p>
- * Copyright (c) 2018, Babel Sistemas de Información. All rights reserved.
- * </p>
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
-class LoginUseCase(private val repository: Repository) {
+class LoginUseCase(private val repository: Repository) : EmaUseCase<LoginRequest, User>() {
 
-
-    @Throws
-    suspend fun doLogin(loginRequest: LoginRequest): User {
-        return repository.login(loginRequest)
+    override suspend fun useCaseFunction(input: LoginRequest): User {
+        return repository.login(input)
     }
 }
