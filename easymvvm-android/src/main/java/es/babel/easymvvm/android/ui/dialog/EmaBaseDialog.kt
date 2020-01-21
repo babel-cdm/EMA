@@ -15,7 +15,7 @@ import es.babel.easymvvm.core.dialog.EmaDialogListener
 /**
  * Base dialog class to implement dialogs
  *
- * @author <a href="mailto:carlos.mateo@babel.es">Carlos Mateo Benito</a>
+ * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
 abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterface.OnShowListener {
 

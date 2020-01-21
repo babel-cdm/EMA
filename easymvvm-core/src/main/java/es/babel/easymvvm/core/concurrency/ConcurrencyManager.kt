@@ -8,10 +8,10 @@ import kotlinx.coroutines.Job
 /**
  * Manager to handle concurrency tasks
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
-interface ConcurrencyManager {
+interface ConcurrencyManager{
 
     /**
      * Cancel al pending tasks in process
