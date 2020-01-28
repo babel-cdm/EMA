@@ -63,7 +63,7 @@ class EmaUserAdapter(private val viewModel: EmaUserViewModel,
     /////////////////////////////////////////////////////////////
 
     /*
-    override val layoutItemId: Int? = R.layout.item_left
+    override val layoutItemId: Int? = R.layoutId.item_left
 
     override fun View.bind(item: EmaUserItemModel, viewType: Int) {
 

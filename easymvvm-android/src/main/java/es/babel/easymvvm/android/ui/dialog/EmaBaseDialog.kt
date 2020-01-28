@@ -37,7 +37,7 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
     /**
      * Specify the layout to be inflated in the [EmaBaseDialog.onCreateView].
      */
-    protected abstract fun getLayout(): Int
+    protected abstract val layoutId: Int
 
     /**
      * Setup data for UI
@@ -61,10 +61,10 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(getLayout(), container, false)
-        if (dialog != null && dialog.window != null) {
-            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
+        val view = inflater.inflate(layoutId, container, false)
+        dialog?.window?.apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            requestFeature(Window.FEATURE_NO_TITLE)
         }
 
         contentView = view
@@ -86,17 +86,20 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
 
     override fun onResume() {
         super.onResume()
-        val display = dialog.window.windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
+        dialog?.window?.also{win ->
+            val display = win.windowManager.defaultDisplay
+            val size = Point()
+            display.getSize(size)
 
-        data?.run {
-            val width = proportionWidth?.let { (it * size.x).toInt() }
-                    ?: ViewGroup.LayoutParams.WRAP_CONTENT
-            val height = proportionHeight?.let { (it * size.y).toInt() }
-                    ?: ViewGroup.LayoutParams.WRAP_CONTENT
-            dialog.window.setLayout(width, height)
+            data?.run {
+                val width = proportionWidth?.let { (it * size.x).toInt() }
+                        ?: ViewGroup.LayoutParams.WRAP_CONTENT
+                val height = proportionHeight?.let { (it * size.y).toInt() }
+                        ?: ViewGroup.LayoutParams.WRAP_CONTENT
+                win.setLayout(width, height)
+            }
         }
+
 
 
     }
