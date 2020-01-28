@@ -20,7 +20,7 @@ import org.kodein.di.generic.instance
  */
 class EmaHomeActivity : BaseActivity<EmaHomeToolbarState, EmaHomeToolbarViewModel, EmaHomeNavigator.Navigation>() {
 
-    override fun getNavGraph(): Int = R.navigation.navigation_ema_home
+    override val navGraph: Int = R.navigation.navigation_ema_home
 
     override fun onInitialized(viewModel: EmaHomeToolbarViewModel) {
 
