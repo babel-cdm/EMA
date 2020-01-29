@@ -23,8 +23,7 @@ Add the **EMA** dependencies
   >
 
     dependencies {
-	      implementation 'com.github.babel-cdm.EMA:ema-core:1.2.3'
-          implementation 'com.github.babel-cdm.EMA:ema-android:1.2.3'
+          implementation 'com.github.babel-cdm.EMA:ema-android:2.0.0'
     }
 
 To use **test support library** add the following ones:

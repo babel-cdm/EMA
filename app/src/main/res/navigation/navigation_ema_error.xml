@@ -6,6 +6,6 @@
     app:startDestination="@id/emaErrorViewFragment">
     <fragment
         android:id="@+id/emaErrorViewFragment"
-        android:name="es.babel.ema.presentation.ui.error.EmaErrorViewFragment"
+        android:name="es.babel.easymvvm.presentation.ui.error.EmaErrorViewFragment"
         tools:layout="@layout/fragment_error"/>
 </navigation>

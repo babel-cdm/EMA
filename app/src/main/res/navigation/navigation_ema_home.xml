@@ -8,26 +8,33 @@
 
     <fragment
         android:id="@+id/homeViewFragment"
-        android:name="es.babel.ema.presentation.ui.home.EmaHomeFragment"
+        android:name="es.babel.easymvvm.presentation.ui.home.EmaHomeFragment"
         android:label="HomeViewFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeViewFragment_to_userFragment"
-            app:destination="@id/UserViewFragment" />
+            app:destination="@id/UserViewFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_homeViewFragment_to_emaErrorViewActivity"
             app:destination="@id/emaErrorViewActivity" />
+        <action
+            android:id="@+id/action_homeViewFragment_self"
+            app:destination="@id/homeViewFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/UserViewFragment"
-        android:name="es.babel.ema.presentation.ui.user.EmaUserFragment"
-        android:label="RememberUserViewFragment"
+        android:name="es.babel.easymvvm.presentation.ui.user.EmaUserFragment"
+        android:label="@string/user_toolbar_title"
         tools:layout="@layout/fragment_user">
     </fragment>
     <activity
         android:id="@+id/emaErrorViewActivity"
-        android:name="es.babel.ema.presentation.ui.error.EmaErrorViewActivity"
+        android:name="es.babel.easymvvm.presentation.ui.error.EmaErrorToolbarViewActivity"
         android:label="EmaErrorViewActivity" />
 
 

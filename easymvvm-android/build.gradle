@@ -1,23 +1,21 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.babel-cdm'
 
 android {
 
     defaultConfig {
-        compileSdkVersion ema.compileSdk
         minSdkVersion ema.minSdk
+        compileSdkVersion ema.compileSdk
         targetSdkVersion ema.targetSdk
         versionCode ema.versionCode
         versionName ema.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
+        debug {
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -29,43 +27,28 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    packagingOptions {
-        pickFirst 'META-INF/kotlinx-io.kotlin_module'
-        pickFirst 'META-INF/easymvvm-android_debug.kotlin_module'
-    }
-
 }
 
 dependencies {
-
     //Navigation
-    implementation emaAndroid.navigationFragment
-    implementation emaAndroid.navigationUI
+    api emaAndroid.navigationFragment
+    api emaAndroid.navigationUI
 
     //Architecture components
-    implementation emaAndroid.lifecycle
-
-    //Kotlin
-    implementation emaAndroid.kotlin
-    implementation emaAndroid.coroutines
+    api emaAndroid.lifecycle
 
     //Kodein
-    implementation emaAndroid.kodein
-    implementation emaAndroid.kodeinAndroid
+    api emaAndroid.kodein
+    api emaAndroid.kodeinAndroid
 
     //UI
-    implementation emaAndroid.constraint
-    implementation emaAndroid.design
-    implementation emaAndroid.material
+    api emaAndroid.constraint
+    api emaAndroid.design
+    api emaAndroid.material
 
-    //Test
-    androidTestImplementation emaTesting.junit
-    androidTestImplementation emaTesting.mockito
+    api project(path: ':easymvvm-core')
+}
 
-    testImplementation emaTesting.junit
-    testImplementation emaTesting.mockito
-
-
-    implementation project(path: ':easymvvm-core')
-    androidTestImplementation project(":easymvvm-testing-android")
+repositories {
+    mavenCentral()
 }

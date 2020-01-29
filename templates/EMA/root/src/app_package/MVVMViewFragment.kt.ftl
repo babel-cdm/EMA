@@ -1,17 +1,17 @@
 package ${packageName}
 
-<#if !parentFragment?has_content>
 import es.babel.easymvvm.android.ui.EmaFragment
-</#if>
 import es.babel.easymvvm.android.navigation.EmaNavigator
 import es.babel.easymvvm.core.state.EmaExtraData
+
+import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 
-class ${functionalityName}ViewFragment : <#if parentFragment?has_content>${parentFragment}<#else>EmaFragment</#if><${functionalityName}State, ${functionalityName}ViewModel, <#if navigator?has_content>${navigator}<#else>${functionalityName}Navigator</#if>.Navigation>() {
+class ${functionalityName}Fragment : EmaFragment<${functionalityName}State, ${functionalityName}ViewModel, <#if navigator?has_content>${navigator}<#else>${functionalityName}Navigator</#if>.Navigation>() {
 
     override fun injectFragmentModule(kodein: Kodein.MainBuilder): Kodein.Module? = null
 
-    override val inputStateKey: String?= null
+    override val fragmentViewModelScope: Boolean = true
 
     override val viewModelSeed: ${functionalityName}ViewModel by instance()
 
@@ -25,7 +25,7 @@ class ${functionalityName}ViewFragment : <#if parentFragment?has_content>${paren
 
     }
 
-    override fun onStateLoading(data: EmaExtraData) {
+    override fun onStateAlternative(data: EmaExtraData) {
 
     }
 
@@ -37,7 +37,6 @@ class ${functionalityName}ViewFragment : <#if parentFragment?has_content>${paren
 
     }
 
+    override val layoutId: Int = R.layout.fragmentID
 
-    override fun getFragmentLayout(): Int = R.layout.fragmentID
-   
 }

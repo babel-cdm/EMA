@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations
 /**
  * Class for testing. Provide mock initialization.
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
 abstract class EmaTest {

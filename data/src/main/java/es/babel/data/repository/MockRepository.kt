@@ -8,15 +8,20 @@ import kotlinx.coroutines.delay
 
 
 /**
- * Project: Ema
- * Created by: cmateob on 19/1/19.
+ *  *<p>
+ * Copyright (c) 2020, Babel Sistemas de Información. All rights reserved.
+ * </p>
+ *
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
+ *
+ * Created by: Carlos Mateo Benito on 19/1/19.
  */
 class MockRepository : Repository {
 
     override suspend fun login(loginRequest: LoginRequest): User {
         delay(2000)
-       if(loginRequest.name.equals("1234") && loginRequest.password=="1234")
-           return User("Babel", "Sistemas de informacion")
+       if(loginRequest.name.equals("Admin",true) && loginRequest.password=="1234")
+           return User("Admin", "EMA based on MVVM Architecture, powered by Carmabs")
         else throw LoginException()
     }
 }

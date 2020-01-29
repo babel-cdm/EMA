@@ -1,4 +1,3 @@
-
 package ${packageName}
 
 import es.babel.easymvvm.core.state.EmaBaseState

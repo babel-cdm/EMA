@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 /**
  * ConcurrencyManager implementation for coroutines
  *
- * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
+ * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
 class DefaultConcurrencyManager : ConcurrencyManager {
@@ -30,7 +30,6 @@ class DefaultConcurrencyManager : ConcurrencyManager {
                 }
             }
         }
-
         scope.launch { block.invoke(this) }
         return job
     }
@@ -45,9 +44,8 @@ class DefaultConcurrencyManager : ConcurrencyManager {
         synchronized(jobList) {
             val jobPending = mutableListOf<Job>()
             jobPending.addAll(jobList)
-            jobPending.forEach {
-                if (it.isActive) it.cancel()
-            }
+            jobPending.forEach { if (it.isActive) it.cancel() }
+
             jobList.clear()
         }
     }

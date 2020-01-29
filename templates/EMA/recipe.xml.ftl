@@ -8,10 +8,10 @@
 
     <#if addActivity>
     <instantiate from="src/app_package/MVVMViewActivity.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${functionalityName}ViewActivity.kt" />
+                   to="${escapeXmlAttribute(srcOut)}/${functionalityName}Activity.kt" />
     </#if>
     <instantiate from="src/app_package/MVVMViewFragment.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${functionalityName}ViewFragment.kt" />
+                   to="${escapeXmlAttribute(srcOut)}/${functionalityName}  Fragment.kt" />
 
     <instantiate from="src/app_package/ViewState.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${functionalityName}State.kt" />

@@ -23,26 +23,27 @@ abstract class EmaBaseLayout : FrameLayout, KodeinAware {
     override val kodein: Kodein by closestKodein()
 
     private var mainLayout: View? = null
+
     protected var viewsSetup = false
 
-    constructor(context: Context) : super(context) {
-        onCreateView(context)
-    }
+    private var attrSet: AttributeSet? = null
+
+    constructor(context: Context) : super(context)
 
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs) {
-        onCreateView(context, attrs)
+        attrSet = attrs
     }
 
     constructor(ctx: Context, attrs: AttributeSet, defStyleAttr: Int) : super(ctx, attrs, defStyleAttr) {
-        onCreateView(context, attrs)
+        attrSet = attrs
     }
+
 
     private fun onCreateView(context: Context, attrs: AttributeSet? = null) {
         viewsSetup = false
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val v = inflater.inflate(getLayout(), this) as ViewGroup
+        val v = inflater.inflate(layoutId, this) as ViewGroup
         mainLayout = v.getChildAt(0)
-
         handleAttributes(attrs)
     }
 
@@ -50,6 +51,7 @@ abstract class EmaBaseLayout : FrameLayout, KodeinAware {
      * Setup called once the windows has been attached
      */
     override fun onAttachedToWindow() {
+        onCreateView(context,attrSet)
         super.onAttachedToWindow()
         mainLayout?.let {
             setup(it)
@@ -78,7 +80,7 @@ abstract class EmaBaseLayout : FrameLayout, KodeinAware {
     /**
      * @return the layout of the fragment to be inflated in the [EmaBaseLayout.onCreateView]
      */
-    protected abstract fun getLayout(): Int
+    protected abstract val layoutId: Int
 
     /**
      * Handle the custom attributes of the view
