@@ -697,7 +697,7 @@ Depending the class implemented, we must override the following parameters:
 	
 Some <mark>**OPTIONAL**</mark> parameters to override are:
 
-* **override fun getLayout(): Int** 
+* **override fun layout: Int**
 	
 	By default **EMA activties** provide an empty layout with the ***NavHostFragment*** container, so if you want to override the layout for custom design, it <mark>must have a **NavHostFragment** container identified by ***id : navHostFragment***</mark>.
 	
@@ -742,12 +742,12 @@ Once we have defined the ***EmaFragment***, we must override the following param
 	override val fragmentViewModelScope: Boolean = true
 	~~~
 
-* **override fun getFragmentLayout(): Int**
+* **override val layout: Int**
 
 	You must provide the fragment layout resource ID.
 
 	~~~
-	override fun getFragmentLayout(): Int = R.layout.fragment_user	~~~
+	override val layout: Int = R.layout.fragment_user	~~~
 
 * **override fun injectFragmentModule(kodein: Kodein.MainBuilder): Kodein.Module?**
 
@@ -1289,7 +1289,7 @@ To create a dialog provider we need implement/extend the following EMA classes:
 
 | Overriding methods/fields        | Description                                                        |
 | :------------------------------: | :----------------------------------------------------------------  |
-| getLayout():Int                  | The layout xml resource                                            |
+| layout:Int                  | The layout xml resource                                            |
 | setupData(data: T, view:View)    | Here you will have access to the dialog layout view elements through *view* for setting their values with *data*   
 
 * **EmaBaseDialogProvider**
@@ -1328,7 +1328,7 @@ interface SimpleDialogListener : EmaDialogListener {
 ~~~kotlin
 class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
 
-    override fun getLayout(): Int {
+    override fun layout: Int {
         return R.layout.dialog_simple
     }
 
