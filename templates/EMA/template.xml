@@ -14,13 +14,6 @@
         constraints="class|nonempty"
         help="The name of the functionality that requires MVVM views"/>
 
-    <parameter
-            id="parentViewModel"
-            name="Hierarchical ViewModel Parent"
-            type="string"
-            constraints="class|empty"
-            help="The hierarchical parent view model"/>
-
     <parameter 
         id="createNavigator"
         name="Create navigator"
@@ -36,30 +29,12 @@
         visibility="!createNavigator"
         help="Navigator class name for functionality navigation"/>
 
-    <parameter
-        id="parentFragment"
-        name="Hierarchical Fragment Parent"
-        type="string"
-        constraints="class|empty"
-        help="The hierarchical parent fragment"/>
-
     <parameter 
         id="addActivity"
         name="Add activity to functionality"
         type="boolean"
         default="false"/>
 
-    <parameter
-            id="parentActivity"
-            name="Hierarchical Activity Parent"
-            type="string"
-            visibility = "addActivity"
-            constraints="class|empty"
-            help="The hierarchical parent activity"/>
-
-   
-
- 
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
  
