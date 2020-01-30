@@ -1,6 +1,7 @@
 package es.babel.easymvvm.presentation.ui.backdata
 
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
+import es.babel.easymvvm.presentation.base.BaseViewModel
 
 /**
  *<p>
@@ -12,7 +13,7 @@ import es.babel.easymvvm.android.viewmodel.EmaViewModel
  * Date: 2019-11-07
  */
 
-class EmaBackToolbarViewModel : EmaViewModel<EmaBackToolbarState, EmaBackNavigator.Navigation>() {
+class EmaBackToolbarViewModel : BaseViewModel<EmaBackToolbarState, EmaBackNavigator.Navigation>() {
 
     override val initialViewState: EmaBackToolbarState = EmaBackToolbarState()
 

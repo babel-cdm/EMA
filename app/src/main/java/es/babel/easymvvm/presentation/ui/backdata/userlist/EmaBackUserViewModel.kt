@@ -1,6 +1,7 @@
 package es.babel.easymvvm.presentation.ui.backdata.userlist;
 
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
+import es.babel.easymvvm.presentation.base.BaseViewModel
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
 import es.babel.easymvvm.presentation.ui.backdata.creation.EmaBackUserCreationViewModel
 
@@ -14,7 +15,7 @@ import es.babel.easymvvm.presentation.ui.backdata.creation.EmaBackUserCreationVi
  * Date: 2019-11-07
  */
 
-class EmaBackUserViewModel : EmaViewModel<EmaBackUserState, EmaBackNavigator.Navigation>() {
+class EmaBackUserViewModel : BaseViewModel<EmaBackUserState, EmaBackNavigator.Navigation>() {
 
     companion object {
         const val RESULT_USER_NUMBER = 1000
