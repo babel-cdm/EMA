@@ -1,6 +1,6 @@
 package ${packageName}
 
-ºimport es.babel.easymvvm.android.navigation.EmaNavigator
+import es.babel.easymvvm.android.navigation.EmaNavigator
 import es.babel.easymvvm.android.ui.EmaActivity
 import es.babel.easymvvm.core.state.EmaExtraData
 
