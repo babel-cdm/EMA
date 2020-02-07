@@ -55,7 +55,7 @@ abstract class EmaFragmentActivity : EmaBaseActivity() {
             findNavController(R.id.navHostFragment).navigateUp()
 
     /**
-     * Get the view whic acts as fragment container
+     * Get the view which acts as fragment container
      */
     protected fun getContentLayout(): View {
         return findViewById(R.id.navHostFragment)
