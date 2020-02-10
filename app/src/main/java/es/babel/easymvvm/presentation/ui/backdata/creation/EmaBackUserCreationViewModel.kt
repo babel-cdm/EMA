@@ -1,7 +1,6 @@
 package es.babel.easymvvm.presentation.ui.backdata.creation
 
 import es.babel.domain.manager.ResourceManager
-import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.presentation.base.BaseViewModel
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
