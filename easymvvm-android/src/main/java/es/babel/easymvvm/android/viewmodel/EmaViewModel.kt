@@ -37,24 +37,6 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
     }
 
     /**
-     * Update the current state and update the normal view state by default
-     * @param notifyView updates the view
-     * @param changeStateFunction create the new state
-     */
-    @Deprecated("Use updateToNormalState, that always update the state to Normal and notify the view, to update only" +
-            " the data of the state without notifying the current state to the view, use updateDataState")
-    protected fun updateToNormalState(notifyView: Boolean = true, changeStateFunction: S.() -> S) {
-        viewState?.let {
-            viewState = changeStateFunction(it)
-            viewState?.let { newState ->
-                state = updateData(newState)
-            }
-            if (notifyView) updateToNormalState()
-        }
-
-    }
-
-    /**
      * Update the data of the state without notifying it to the view.
      */
     private fun updateData(newState: S): EmaState<S> {
@@ -169,9 +151,8 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
     /**
      * Throws exception if the state of the view has not been initialized
      */
-    private fun throwInitialStateException(): Exception {
-        throw RuntimeException("Initial state has not been created")
-    }
+    private fun throwInitialStateException(): Nothing =
+            throw RuntimeException("Initial state has not been created")
 
     /**
      * Generate the initial state of the view
@@ -181,7 +162,7 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
     /**
      * Set a result for previous view when the current one is destroyed
      */
-    protected fun addResult(data: Serializable,code: Int = EmaResultViewModel.RESULT_ID_DEFAULT) {
+    protected fun addResult(data: Serializable, code: Int = EmaResultViewModel.RESULT_ID_DEFAULT) {
         resultViewModel.addResult(
                 EmaResultModel(
                         id = code,
@@ -206,7 +187,7 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
         resultViewModel.notifyResults(getId())
     }
 
-    fun getId():Int{
+    private fun getId(): Int {
         return this.javaClass.name.hashCode()
     }
 }
