@@ -1,6 +1,5 @@
 package es.babel.easymvvm.presentation.ui.error
 
-import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.presentation.base.BaseViewModel
 import es.babel.easymvvm.presentation.ui.backdata.userlist.EmaBackUserViewModel
@@ -12,6 +11,7 @@ import es.babel.easymvvm.presentation.ui.backdata.userlist.EmaBackUserViewModel
  * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
+@Suppress("MemberVisibilityCanBePrivate")
 class EmaErrorToolbarViewModel : BaseViewModel<EmaErrorToolbarState, EmaErrorNavigator.Navigation>() {
 
     override val initialViewState: EmaErrorToolbarState = EmaErrorToolbarState()

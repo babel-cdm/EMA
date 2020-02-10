@@ -19,22 +19,23 @@ import kotlinx.coroutines.Job
  *
  * Abstract base class for ViewModel in MVVM architecture.
  *
- * @param S is template about the class which will represent the state of the view. It has to implement
- * the [EmaBaseState] interface
+ * @param S is template about the class which will represent the state of the view. It has to
+ * implement the [EmaBaseState] interface
  *
- * @param NS is the template about the available navigation states contained in the [EmaNavigator] used
- * for the feature that implement this ViewModel
+ * @param NS is the template about the available navigation states contained in the
+ * [EmaNavigationState] used for the feature that implement this ViewModel
  *
  * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
+@Suppress("unused")
 abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : ViewModel() {
 
     /**
      * Observable state that launch event every time a value is set. This value will be the state
      * of the view. When the ViewModel is attached to an observer, if this value is already set up,
      * it will be notified to the new observer. Could be different from state if some changes of the
-     * current state has not been notified to the view (Ex: a switch has been changed and the state has
-     * been modified, but we don't want no notify to the view to avoid infinite loop ->
+     * current state has not been notified to the view (Ex: a switch has been changed and the state
+     * has been modified, but we don't want no notify to the view to avoid infinite loop ->
      *  switch modified
      *      -> switch state saved on view model if there is view recreation
      *          -> it is notified to the view
@@ -75,11 +76,11 @@ abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : Vie
 
 
     /**
-     * Methos called the first time ViewModel is created
+     * Method called the first time ViewModel is created
      * @param inputState
      * @return true if it's the first time is started
      */
-     internal open fun onStart(inputState: S? = null): Boolean {
+    internal open fun onStart(inputState: S? = null): Boolean {
         val firstTime = if (state == null) {
             val initialStatus = inputState ?: createInitialState()
             state = initialStatus
@@ -103,12 +104,12 @@ abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : Vie
     /**
      * Called always the view goes to the foreground
      */
-    abstract fun onResume(firstTime:Boolean)
+    abstract fun onResume(firstTime: Boolean)
 
     /**
-     * Get observable state as LiveDaya to avoid state setting from the view
+     * Get observable state as LiveData to avoid state setting from the view
      */
-    fun getObservableState():LiveData<S> = observableState
+    fun getObservableState(): LiveData<S> = observableState
 
     /**
      * Get current state of view
@@ -205,7 +206,7 @@ abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : Vie
     }
 
     /**
-     * Method called when the ViewModel is destroyed. It cancell all background pending tasks
+     * Method called when the ViewModel is destroyed. It cancel all background pending tasks
      */
     override fun onCleared() {
         concurrencyManager.cancelPendingTasks()

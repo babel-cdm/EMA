@@ -2,7 +2,6 @@ package es.babel.easymvvm.presentation.base
 
 import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.core.navigator.EmaNavigationState
-import es.babel.easymvvm.core.state.EmaState
 
 /**
  *  *<p>
