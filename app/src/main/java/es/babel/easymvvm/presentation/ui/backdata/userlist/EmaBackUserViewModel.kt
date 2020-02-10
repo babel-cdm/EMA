@@ -1,6 +1,5 @@
-package es.babel.easymvvm.presentation.ui.backdata.userlist;
+package es.babel.easymvvm.presentation.ui.backdata.userlist
 
-import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.presentation.base.BaseViewModel
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
 import es.babel.easymvvm.presentation.ui.backdata.creation.EmaBackUserCreationViewModel
@@ -29,12 +28,12 @@ class EmaBackUserViewModel : BaseViewModel<EmaBackUserState, EmaBackNavigator.Na
     }
 
     override fun onResultListenerSetup() {
-        addOnResultReceived(EmaBackUserCreationViewModel.RESULT_USER){
+        addOnResultReceived(EmaBackUserCreationViewModel.RESULT_USER) {
             updateToNormalState {
                 val mutableList = listUsers.toMutableList()
                 mutableList.add(it.data as EmaBackUserModel)
                 addResult(mutableList.size, RESULT_USER_NUMBER)
-                copy(listUsers = mutableList,noUserVisibility = mutableList.isEmpty())
+                copy(listUsers = mutableList, noUserVisibility = mutableList.isEmpty())
             }
         }
     }

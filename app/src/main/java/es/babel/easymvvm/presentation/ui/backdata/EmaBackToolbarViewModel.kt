@@ -1,6 +1,5 @@
 package es.babel.easymvvm.presentation.ui.backdata
 
-import es.babel.easymvvm.android.viewmodel.EmaViewModel
 import es.babel.easymvvm.presentation.base.BaseViewModel
 
 /**
