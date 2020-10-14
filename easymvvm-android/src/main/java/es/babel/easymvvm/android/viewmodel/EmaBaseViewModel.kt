@@ -80,7 +80,7 @@ abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : Vie
      * @param inputState
      * @return true if it's the first time is started
      */
-    internal open fun onStart(inputState: S? = null): Boolean {
+    open fun onStart(inputState: S? = null): Boolean {
         val firstTime = if (state == null) {
             val initialStatus = inputState ?: createInitialState()
             state = initialStatus
