@@ -20,8 +20,11 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
      */
     private var viewState: S? = null
 
-    internal lateinit var resultViewModel: EmaResultViewModel
+    lateinit var resultViewModel: EmaResultViewModel
 
+    /**
+     * Use only for testing purposes
+     */
     override fun onStart(inputState: EmaState<S>?): Boolean {
         if (viewState == null)
             inputState?.let { viewState = it.data }
