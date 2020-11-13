@@ -37,7 +37,7 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
     /**
      * The navigator [EmaBaseNavigator]
      */
-    val navigator: EmaBaseNavigator<NS>?
+    var navigator: EmaBaseNavigator<NS>?
 
     /**
      * The state set up form previous views when it is launched.
