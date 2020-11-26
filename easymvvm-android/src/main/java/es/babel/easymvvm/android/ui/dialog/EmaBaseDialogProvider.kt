@@ -14,7 +14,7 @@ import es.babel.easymvvm.core.dialog.EmaDialogProvider
  */
 abstract class EmaBaseDialogProvider constructor(private val fragmentManager: FragmentManager) : EmaDialogProvider {
 
-    private var dialog: EmaBaseDialog<EmaDialogData>? = null
+    var dialog: EmaBaseDialog<EmaDialogData>? = null
 
     abstract fun generateDialog(): EmaBaseDialog<*>
 
