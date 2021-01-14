@@ -2,6 +2,7 @@ package es.babel.easymvvm.presentation.injection
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import es.babel.easymvvm.android.ui.dialog.EmaBaseBottomDialogProvider
 import es.babel.easymvvm.android.ui.dialog.EmaBaseDialogProvider
 import es.babel.easymvvm.presentation.DIALOG_TAG_LOADING
 import es.babel.easymvvm.presentation.DIALOG_TAG_SIMPLE
@@ -33,7 +34,7 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
 
     bind<FragmentManager>() with singleton { fragment.requireActivity().supportFragmentManager }
 
-    bind<EmaBaseDialogProvider>(tag = DIALOG_TAG_SIMPLE) with provider { SimpleDialogProvider(instance()) }
+    bind<EmaBaseBottomDialogProvider>(tag = DIALOG_TAG_SIMPLE) with provider { SimpleDialogProvider(instance()) }
 
     bind<EmaBaseDialogProvider>(tag = DIALOG_TAG_LOADING) with provider { LoadingDialogProvider(instance()) }
 

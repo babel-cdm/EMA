@@ -71,7 +71,6 @@ class EmaHomeViewModel(
                     },
                     { e ->
                         updateToErrorState(e)
-                        navigate(EmaHomeNavigator.Navigation.Error)
                     }
             )
         }
@@ -134,5 +133,6 @@ class EmaHomeViewModel(
 
     fun onActionDialogErrorAccept() {
         updateToNormalState()
+        navigate(EmaHomeNavigator.Navigation.Error)
     }
 }

@@ -158,6 +158,7 @@ abstract class EmaActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
     /**
      * Get the incoming state from another activity by the key [inputStateKey] provided
      */
+    @Suppress("UNCHECKED_CAST")
     private fun getInState(): S? {
         return intent?.let {
             it.extras?.getSerializable(inputStateKey) as? S

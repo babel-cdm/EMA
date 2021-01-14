@@ -13,5 +13,4 @@ interface EmaDialogProvider {
     var dialogListener: EmaDialogListener?
 
 
-
 }

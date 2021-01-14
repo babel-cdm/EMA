@@ -10,6 +10,7 @@ import es.babel.easymvvm.presentation.injection.activityInjection
 import es.babel.easymvvm.android.extension.dpToPx
 import es.babel.easymvvm.android.extension.getColorCompat
 import es.babel.easymvvm.android.extension.getFormattedString
+import es.babel.easymvvm.presentation.ui.backdata.EmaBackToolbarState
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 import kotlin.math.roundToInt
@@ -95,5 +96,9 @@ class EmaErrorToolbarViewActivity : EmaActivity<EmaErrorToolbarState, EmaErrorTo
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onStateNormalFirstTime(data: EmaErrorToolbarState) {
+
     }
 }

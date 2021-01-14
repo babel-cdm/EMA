@@ -1,5 +1,6 @@
 package es.babel.easymvvm.presentation.ui.home
 
+import es.babel.easymvvm.core.constants.INT_ZERO
 import es.babel.easymvvm.core.constants.STRING_EMPTY
 import es.babel.easymvvm.core.state.EmaBaseState
 
@@ -15,6 +16,7 @@ import es.babel.easymvvm.core.state.EmaBaseState
 data class EmaHomeState(
         val userName: String = STRING_EMPTY,
         val userPassword: String = STRING_EMPTY,
+        val defaultTitle: Int = INT_ZERO,
         val showPassword: Boolean = false,
         val rememberUser: Boolean = false
 ) : EmaBaseState

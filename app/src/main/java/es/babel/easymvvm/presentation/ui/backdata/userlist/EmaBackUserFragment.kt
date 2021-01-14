@@ -66,4 +66,8 @@ class EmaBackUserFragment : BaseFragment<EmaBackUserState, EmaBackUserViewModel,
 
     }
 
+    override fun onNormalFirstTime(data: EmaBackUserState) {
+
+    }
+
 }

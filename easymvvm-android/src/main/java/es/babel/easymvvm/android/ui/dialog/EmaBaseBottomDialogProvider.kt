@@ -2,6 +2,7 @@ package es.babel.easymvvm.android.ui.dialog
 
 import android.util.Log
 import androidx.fragment.app.FragmentManager
+import es.babel.easymvvm.core.dialog.EmaBottomDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogListener
 import es.babel.easymvvm.core.dialog.EmaDialogProvider
@@ -12,21 +13,21 @@ import es.babel.easymvvm.core.dialog.EmaDialogProvider
  *
  * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
-abstract class EmaBaseDialogProvider constructor(private val fragmentManager: FragmentManager) : EmaDialogProvider {
+abstract class EmaBaseBottomDialogProvider constructor(private val fragmentManager: FragmentManager) : EmaDialogProvider {
 
-    var dialog: EmaBaseDialog<EmaDialogData>? = null
+    var dialog: EmaBaseBottomSheetDialog<EmaBottomDialogData>? = null
 
-    abstract fun generateDialog(): EmaBaseDialog<*>
+    abstract fun generateDialog(): EmaBaseBottomSheetDialog<*>
 
     @Suppress("UNCHECKED_CAST")
     override fun show(dialogData: EmaDialogData?) {
 
         if (dialog == null)
-            dialog = generateDialog() as EmaBaseDialog<EmaDialogData>
+            dialog = generateDialog() as EmaBaseBottomSheetDialog<EmaBottomDialogData>
 
         dialog?.let { dialog ->
             dialog.dialogListener = dialogListener
-            dialog.data = dialogData
+            dialog.data = dialogData as EmaBottomDialogData?
             if (!dialog.isVisible)
                 dialog.show(fragmentManager, getTag())
 
