@@ -48,4 +48,8 @@ class EmaBackToolbarActivity : BaseActivity<EmaBackToolbarState, EmaBackToolbarV
     override fun onStateError(error: Throwable) {
 
     }
+
+    override fun onStateNormalFirstTime(data: EmaBackToolbarState) {
+
+    }
 }

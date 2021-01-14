@@ -136,7 +136,6 @@ abstract class EmaViewModel<S, NS : EmaNavigationState> : EmaBaseViewModel<EmaSt
 
             super.updateView(alternativeData)
         } ?: throwInitialStateException()
-
     }
 
     /**

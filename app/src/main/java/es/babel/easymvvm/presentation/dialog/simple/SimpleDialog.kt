@@ -2,7 +2,7 @@ package es.babel.easymvvm.presentation.dialog.simple
 
 import android.view.View
 import es.babel.easymvvm.R
-import es.babel.easymvvm.android.ui.dialog.EmaBaseDialog
+import es.babel.easymvvm.android.ui.dialog.EmaBaseBottomSheetDialog
 import kotlinx.android.synthetic.main.dialog_simple.view.*
 
 
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.dialog_simple.view.*
  *
  * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
-class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
+class SimpleDialog : EmaBaseBottomSheetDialog<SimpleDialogData>() {
 
     override val layoutId: Int = R.layout.dialog_simple
 

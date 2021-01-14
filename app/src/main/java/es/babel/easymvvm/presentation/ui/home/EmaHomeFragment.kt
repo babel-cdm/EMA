@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import es.babel.domain.exception.LoginException
@@ -11,6 +12,7 @@ import es.babel.domain.exception.PasswordEmptyException
 import es.babel.domain.exception.UserEmptyException
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.checkUpdate
+import es.babel.easymvvm.core.constants.INT_ZERO
 import es.babel.easymvvm.core.constants.STRING_EMPTY
 import es.babel.easymvvm.core.dialog.EmaDialogProvider
 import es.babel.easymvvm.core.state.EmaExtraData
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_password.*
 import kotlinx.android.synthetic.main.layout_user.*
 import org.kodein.di.generic.instance
+import kotlin.reflect.KProperty
 
 /**
  *  *<p>
@@ -209,4 +212,11 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
             is LoginException -> showErrorDialog()
         }
     }
+
+    override fun onNormalFirstTime(data: EmaHomeState) {
+        when(data.defaultTitle){
+            INT_ZERO -> tvLoginWelcome.text = getString(R.string.app_name)
+        }
+    }
+
 }

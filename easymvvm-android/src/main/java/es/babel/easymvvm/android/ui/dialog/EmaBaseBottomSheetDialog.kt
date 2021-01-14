@@ -9,17 +9,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import es.babel.easymvvm.android.R
 import es.babel.easymvvm.core.constants.INT_ZERO
 import es.babel.easymvvm.core.constants.STRING_EMPTY
+import es.babel.easymvvm.core.dialog.EmaBottomDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogListener
 
 /**
  * Base dialog class to implement dialogs
  *
- * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
-abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterface.OnShowListener {
+abstract class EmaBaseBottomSheetDialog<T : EmaBottomDialogData> : BottomSheetDialogFragment(), DialogInterface.OnShowListener {
 
     var dialogListener: EmaDialogListener? = null
 
@@ -39,7 +41,7 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
 
 
     /**
-     * Specify the layout to be inflated in the [EmaBaseDialog.onCreateView].
+     * Specify the layout to be inflated in the [EmaBaseBottomSheetDialog.onCreateView].
      */
     protected abstract val layoutId: Int
 
@@ -50,6 +52,7 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
+        if(data?.showAnimation == false) dialog.window?.setWindowAnimations(-1)
         dialog.setOnShowListener(this)
         dialog.setOnKeyListener { _, keyCode, event ->
             dialogListener?.let {
@@ -66,15 +69,8 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(layoutId, container, false)
-        dialog?.window?.apply {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            requestFeature(Window.FEATURE_NO_TITLE)
-        }
-
         contentView = view
-
         onDataSetup(data)
-
         return view
     }
 
@@ -87,26 +83,6 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
                 }
             } ?: throw Exception("Data type not matching with the dialog")
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        dialog?.window?.also{win ->
-            val display = win.windowManager.defaultDisplay
-            val size = Point()
-            display.getSize(size)
-
-            data?.run {
-                val width = proportionWidth?.let { (it * size.x).toInt() }
-                        ?: ViewGroup.LayoutParams.WRAP_CONTENT
-                val height = proportionHeight?.let { (it * size.y).toInt() }
-                        ?: ViewGroup.LayoutParams.WRAP_CONTENT
-                win.setLayout(width, height)
-            }
-        }
-
-
-
     }
 
     override fun onShow(p0: DialogInterface?) {
@@ -122,7 +98,7 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
                 val oldFragment = findFragmentByTag(tag)
                 val ft = beginTransaction()
                 oldFragment?.let { ft.remove(oldFragment) }
-                ft.add(this@EmaBaseDialog, tag)
+                ft.add(this@EmaBaseBottomSheetDialog, tag)
                 ft.commit()
             }
         }
@@ -134,4 +110,10 @@ abstract class EmaBaseDialog<T : EmaDialogData> : DialogFragment(), DialogInterf
         dialogListener = null
         super.onDestroyView()
     }
+
+    override fun onPause() {
+        super.onPause()
+        dialog?.window?.setWindowAnimations(-1)
+    }
+
 }
