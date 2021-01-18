@@ -26,6 +26,10 @@ abstract class BaseFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : Ema
         onNormal(data)
     }
 
+    override fun onStateNormalFirstTime(data: S) {
+        onNormalFirstTime(data)
+    }
+
     override fun onStateAlternative(data: EmaExtraData) {
         onAlternative(data)
     }
@@ -39,6 +43,8 @@ abstract class BaseFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : Ema
     }
 
     abstract fun onNormal(data: S)
+
+    abstract fun onNormalFirstTime(data: S)
 
     abstract fun onAlternative(data: EmaExtraData)
 

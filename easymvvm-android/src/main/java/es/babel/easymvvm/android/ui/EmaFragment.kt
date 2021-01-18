@@ -20,7 +20,7 @@ import es.babel.easymvvm.core.state.EmaState
  *
  * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
-abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaBaseFragment(), EmaView<S, VM, NS> {
+abstract class  EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaBaseFragment(), EmaView<S, VM, NS> {
 
     /**
      * The view model of the fragment
@@ -139,6 +139,7 @@ abstract class EmaFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
     /**
      * Get the incoming state from another fragment/activity by the key [inputStateKey] provided
      */
+    @Suppress("UNCHECKED_CAST")
     private fun getInState(): S? {
         return arguments?.let {
             if (it.containsKey(inputStateKey)) {

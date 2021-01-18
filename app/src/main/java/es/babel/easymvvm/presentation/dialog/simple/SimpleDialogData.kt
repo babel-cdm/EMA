@@ -1,6 +1,7 @@
 package es.babel.easymvvm.presentation.dialog.simple
 
 import android.graphics.drawable.Drawable
+import es.babel.easymvvm.core.dialog.EmaBottomDialogData
 import es.babel.easymvvm.core.dialog.EmaDialogData
 
 
@@ -20,5 +21,6 @@ data class SimpleDialogData(
         val cancel: String = "",
         val showCross: Boolean = true,
         val image: Drawable? = null,
-        override val proportionWidth: Float? = 7/10f,
-        override val proportionHeight: Float? = null) : EmaDialogData
+        override val proportionWidth: Float? = null,
+        override val proportionHeight: Float? = null,
+        override val showAnimation: Boolean = true) : EmaBottomDialogData

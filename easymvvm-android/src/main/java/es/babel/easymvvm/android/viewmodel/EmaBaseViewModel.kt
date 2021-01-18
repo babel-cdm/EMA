@@ -146,6 +146,14 @@ abstract class EmaBaseViewModel<S : EmaBaseState, NS : EmaNavigationState> : Vie
     }
 
     /**
+     * Method used to update the state of the view. Without notify to observers
+     * @param state Tee current state of the view
+     */
+    protected open fun updateState(state: S){
+        this.state = state
+    }
+
+    /**
      * Method used to notify to the observer for a single event that will be notified only once time.
      * It a new observer is attached, it will not be notified
      */

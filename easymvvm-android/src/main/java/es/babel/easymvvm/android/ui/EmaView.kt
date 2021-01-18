@@ -71,6 +71,9 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
         onViewModelInitialized(vm)
 
         vm.onStart(inputState?.let { EmaState.Normal(it) })
+        vm.state?.data?.let {
+            onStateNormalFirstTime(it)
+        }
         vm.observableState.observe(fragment ?: fragmentActivity, Observer(this::onDataUpdated))
         vm.singleObservableState.observe(fragment
                 ?: fragmentActivity, Observer(this::onSingleData))
@@ -107,6 +110,7 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
      * @param field Ema State field to check if it has been changed.
      * @param areEqualComparator Comparator to determine if both objects are equals. Useful for complex objects
      */
+    @Suppress("UNCHECKED_CAST")
     fun <T> bindForUpdate(field: KProperty<T>, areEqualComparator: ((previous: T?, current: T?) -> Boolean)? = null, action: (current: T?) -> Unit) {
         val currentClass = (field as PropertyReference0).boundReceiver as? S
         currentClass?.also { _ ->
@@ -133,6 +137,7 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
      * @param field Ema State field to check if it has been changed
      * @param areEqualComparator Comparator to determine if both objects are equals. Useful for complex objects
      */
+    @Suppress("UNCHECKED_CAST")
     fun <T> bindForUpdateWithPrevious(field: KProperty<T>, areEqualComparator: ((previous: T?, current: T?) -> Boolean)? = null, action: (previous: T?, current: T?) -> Unit) {
         val currentClass = (field as PropertyReference0).boundReceiver as? S
         currentClass?.also { _ ->
@@ -200,6 +205,12 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
     fun onStateNormal(data: S)
 
     /**
+     * Called when view model is loaded first time
+     * @param data with the state of the view
+     */
+    fun onStateNormalFirstTime(data: S)
+
+    /**
      * Called when view model trigger a updateToAlternativeState event
      * @param data with information about updateToAlternativeState
      */
@@ -233,6 +244,7 @@ interface EmaView<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigation
      * Called when view model trigger a navigation event
      * @param state with info about destination
      */
+    @Suppress("UNCHECKED_CAST")
     fun navigate(state: EmaNavigationState) {
         navigator?.navigate(state as NS)
     }

@@ -49,4 +49,8 @@ class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaE
     }
 
     override val layoutId: Int = R.layout.fragment_error
+
+    override fun onNormalFirstTime(data: EmaErrorState) {
+
+    }
 }

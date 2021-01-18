@@ -94,4 +94,8 @@ class EmaBackUserCreationFragment : BaseFragment<EmaBackUserCreationState, EmaBa
     override fun onError(error: Throwable) {
 
     }
+
+    override fun onNormalFirstTime(data: EmaBackUserCreationState) {
+        
+    }
 }

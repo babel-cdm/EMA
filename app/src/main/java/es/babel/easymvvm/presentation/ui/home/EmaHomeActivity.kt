@@ -26,6 +26,10 @@ class EmaHomeActivity : BaseActivity<EmaHomeToolbarState, EmaHomeToolbarViewMode
 
     }
 
+    override fun onStateNormalFirstTime(data: EmaHomeToolbarState) {
+
+    }
+
     override fun provideFixedToolbarTitle(): String? = getString(R.string.home_toolbar_title)
 
     /**

@@ -55,8 +55,6 @@ class EmaUserFragment : BaseFragment<EmaUserState, EmaUserViewModel, EmaNavigati
     override val viewModelSeed: EmaUserViewModel by instance()
 
     override fun onNormal(data: EmaUserState) {
-        tvUserName.text = data.name
-        tvUserSurname.text = data.surname
         setupRecyclerList(data)
     }
 
@@ -97,5 +95,10 @@ class EmaUserFragment : BaseFragment<EmaUserState, EmaUserViewModel, EmaNavigati
     }
 
     override fun onError(error: Throwable) {
+    }
+
+    override fun onNormalFirstTime(data: EmaUserState) {
+        tvUserName.text = data.name
+        tvUserSurname.text = data.surname
     }
 }
