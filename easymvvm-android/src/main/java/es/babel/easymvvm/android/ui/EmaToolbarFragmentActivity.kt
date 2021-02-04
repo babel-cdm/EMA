@@ -63,7 +63,7 @@ abstract class EmaToolbarFragmentActivity : EmaFragmentActivity() {
         toolbarLayout = lToolbar
         toolbar = tbToolbar
         setupActionBarWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, _, _ ->
             setToolbarTitle(provideFixedToolbarTitle())
         }
     }
