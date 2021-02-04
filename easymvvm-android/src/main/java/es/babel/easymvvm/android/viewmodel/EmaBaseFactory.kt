@@ -16,6 +16,7 @@ interface EmaBaseFactory<VM> : ViewModelProvider.Factory{
      * @param T View model class
      * @param modelClass Class of the view model
      */
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return createViewModel() as T
     }
