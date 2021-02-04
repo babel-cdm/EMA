@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package es.babel.easymvvm.android.ui
 
 import android.util.Log

@@ -49,6 +49,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
     override val navigator: EmaHomeNavigator  by instance()
 
     //As we can see we can use an instance by kodein or generate it by class instance
+    @Suppress("DEPRECATION")
     private val errorDialog: EmaDialogProvider by lazy { SimpleDialogProvider(requireFragmentManager()) }
 
     private val loadingDialog: EmaDialogProvider by instance(tag = DIALOG_TAG_LOADING)

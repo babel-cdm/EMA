@@ -2,40 +2,38 @@ rootProject.ext {
 
     //Libraries
 
-    navigationVersion = "2.1.0"
+    navigationVersion = "2.3.3"
 
-    lifecycleVersion = "2.1.0"
+    lifecycleVersion = "2.2.0"
 
-    kodeinVersion = "6.5.1"
+    kodeinVersion = "6.5.5"
 
-    constraintVersion = "1.1.3"
+    constraintVersion = "2.0.4"
 
     designVersion = "28.0.0"
 
-    materialVersion = "1.0.0"
+    materialVersion = "1.2.1"
 
-    coroutinesVersion = "1.3.0"
+    coroutinesVersion = "1.3.8"
 
-    coreVersion = "1.2.0"
+    testVersion = "1.3.0"
 
-    extJUnitVersion = "1.1.0"
+    extJUnitVersion = "1.1.2"
 
-    rulesVersion = "1.2.0"
+    mockitoVersion = "3.7.7"
 
-    mockitoVersion = "3.2.4"
+    archTesting = "2.0.0"
 
-    archTesting = "1.1.1"
-
-    espressoVersion = "3.2.0"
+    espressoVersion = "3.3.0"
 
 
     ema = [
-            buildTools : "28.0.3",
+            buildTools : "29.0.2",
             minSdk     : 21,
             compileSdk : 28,
             targetSdk  : 28,
-            versionCode: 22,
-            versionName: "2.4.0"
+            versionCode: 23,
+            versionName: "2.4.1"
     ]
 
     appDependencies = [
@@ -64,10 +62,10 @@ rootProject.ext {
 
     emaTesting = [
             espresso   : "androidx.test.espresso:espresso-core:" + project.espressoVersion,
-            core       : "androidx.test:core:" + project.coreVersion,
-            coreKotlin : "androidx.test:core-ktx:" + project.coreVersion,
+            core       : "androidx.test:core:" + project.testVersion,
+            coreKotlin : "androidx.test:core-ktx:" + project.testVersion,
             junit      : "androidx.test.ext:junit:" + project.extJUnitVersion,
-            rules      : "androidx.test:rules:" + project.rulesVersion,
+            rules      : "androidx.test:rules:" + project.testVersion,
             junitKotlin: "androidx.test.ext:junit-ktx:" + project.extJUnitVersion,
             mockito    : "org.mockito:mockito-core:" + project.mockitoVersion,
             archTesting: "android.arch.core:core-testing:" + project.archTesting
