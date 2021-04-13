@@ -19,17 +19,21 @@ abstract class EmaBaseBottomDialogProvider constructor(private val fragmentManag
 
     abstract fun generateDialog(): EmaBaseBottomSheetDialog<*>
 
-    @Suppress("UNCHECKED_CAST")
-    override fun show(dialogData: EmaDialogData?) {
+    private var tag = javaClass.canonicalName?.hashCode().toString()
 
-        if (dialog == null)
+    @Suppress("UNCHECKED_CAST")
+    override fun show(dialogData: EmaDialogData?, tag: String?) {
+
+        if (dialog == null) {
             dialog = generateDialog() as EmaBaseBottomSheetDialog<EmaBottomDialogData>
+            tag?.let { this.tag = it }
+        }
 
         dialog?.let { dialog ->
             dialog.dialogListener = dialogListener
             dialog.data = dialogData as EmaBottomDialogData?
             if (!dialog.isVisible)
-                dialog.show(fragmentManager, getTag())
+                dialog.show(fragmentManager, this.tag)
 
         }
     }
@@ -41,7 +45,7 @@ abstract class EmaBaseBottomDialogProvider constructor(private val fragmentManag
                 it.dismissAllowingStateLoss()
             }
         } ?: also { _ ->
-            val oldDialog = fragmentManager.findFragmentByTag(getTag())
+            val oldDialog = fragmentManager.findFragmentByTag(tag)
             oldDialog?.also {
                 fragmentManager.beginTransaction().remove(it).commit()
             }
@@ -55,8 +59,4 @@ abstract class EmaBaseBottomDialogProvider constructor(private val fragmentManag
             field = value
             dialog?.dialogListener = value
         }
-
-    private fun getTag():String{
-        return javaClass.canonicalName?.hashCode().toString()
-    }
 }
