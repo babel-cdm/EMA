@@ -8,7 +8,7 @@ package es.babel.easymvvm.core.dialog
  */
 interface EmaDialogProvider {
 
-    fun show(dialogData: EmaDialogData?=null)
+    fun show(dialogData: EmaDialogData?=null, tag: String? = null)
     fun hide()
     var dialogListener: EmaDialogListener?
 
