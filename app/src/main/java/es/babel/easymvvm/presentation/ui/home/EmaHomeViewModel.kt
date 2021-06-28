@@ -105,7 +105,7 @@ class EmaHomeViewModel(
     }
 
     fun onActionDeleteUser() {
-        updateDataState {
+        updateToNormalState {
             copy(userName = STRING_EMPTY)
         }
     }

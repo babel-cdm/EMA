@@ -4,7 +4,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import es.babel.domain.exception.LoginException
@@ -16,17 +15,15 @@ import es.babel.easymvvm.core.constants.INT_ZERO
 import es.babel.easymvvm.core.constants.STRING_EMPTY
 import es.babel.easymvvm.core.dialog.EmaDialogProvider
 import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.databinding.FragmentHomeBinding
 import es.babel.easymvvm.presentation.DIALOG_TAG_LOADING
 import es.babel.easymvvm.presentation.base.BaseFragment
 import es.babel.easymvvm.presentation.dialog.loading.LoadingDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogListener
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogProvider
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.layout_password.*
-import kotlinx.android.synthetic.main.layout_user.*
+import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import org.kodein.di.generic.instance
-import kotlin.reflect.KProperty
 
 /**
  *  *<p>
@@ -43,6 +40,7 @@ import kotlin.reflect.KProperty
 class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavigator.Navigation>() {
 
     override val layoutId: Int = R.layout.fragment_home
+    private val binding by viewBinding(FragmentHomeBinding::bind)
 
     override val viewModelSeed: EmaHomeViewModel by instance()
 
@@ -77,12 +75,12 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
         }
     }
 
-    private fun setupButtons(viewModel: EmaHomeViewModel) {
+    private fun setupButtons(viewModel: EmaHomeViewModel) = with(binding) {
         swLightLoginRememberPassword.setOnCheckedChangeListener { _, isChecked -> viewModel.onActionRemember(isChecked) }
-        ivHomeTouchEmptyUser.setOnClickListener { viewModel.onActionDeleteUser() }
-        ivHomePassEmptyPassword.setOnClickListener { viewModel.onActionDeletePassword() }
-        ivHomePassSeePassword.setOnClickListener { viewModel.onActionShowPassword() }
-        etUser.addTextChangedListener(object : TextWatcher {
+        layoutLightLoginCarPlate.ivHomeTouchEmptyUser.setOnClickListener { viewModel.onActionDeleteUser() }
+        layoutLightLoginTitular.ivHomePassEmptyPassword.setOnClickListener { viewModel.onActionDeletePassword() }
+        layoutLightLoginTitular.ivHomePassSeePassword.setOnClickListener { viewModel.onActionShowPassword() }
+        layoutLightLoginCarPlate.etUser.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -97,7 +95,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
                 viewModel.onActionUserWrite(s?.toString() ?: STRING_EMPTY)
             }
         })
-        etPassword.addTextChangedListener(object : TextWatcher {
+        layoutLightLoginTitular.etPassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -122,7 +120,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
         textView.visibility = View.VISIBLE
     }
 
-    private fun hideErrors() {
+    private fun hideErrors() = with(binding) {
         tvLightLoginErrorUser.visibility = View.GONE
         tvLightLoginErrorPassword.visibility = View.GONE
         errorDialog.hide()
@@ -149,7 +147,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
     }
 
 
-    override fun onNormal(data: EmaHomeState) {
+    override fun onNormal(data: EmaHomeState) = with(binding) {
 
         //We hide the dialogs in normal state
         hideErrors()
@@ -167,8 +165,8 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
         // -> TextWatcher calls viewmodel
         // -> ¡INFINITE LOOP!
         //
-        checkUpdate(etUser.text.toString(),data.userName) {
-            etUser.setText(data.userName)
+        checkUpdate(layoutLightLoginCarPlate.etUser.text.toString(),data.userName) {
+            layoutLightLoginCarPlate.etUser.setText(data.userName)
         }
 
         //Use this to execute the set view value operation only if the selected state property has been
@@ -178,7 +176,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
 
 
         bindForUpdate(data::userPassword) {
-            etPassword.setText(data.userPassword)
+            layoutLightLoginTitular.etPassword.setText(data.userPassword)
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -186,13 +184,17 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
         swLightLoginRememberPassword.isChecked = data.rememberUser
 
         data.showPassword.let {
-            if (it) {
-                etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-            } else {
-                etPassword.transformationMethod = null
 
+            with(layoutLightLoginTitular) {
+                if (it) {
+                    etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                } else {
+                    etPassword.transformationMethod = null
+
+                }
+                etPassword.setSelection(etPassword.text.length)
             }
-            etPassword.setSelection(etPassword.text.length)
+
         }
     }
 
@@ -206,7 +208,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
         }
     }
 
-    override fun onError(error: Throwable) {
+    override fun onError(error: Throwable) = with(binding) {
         when (error) {
             is UserEmptyException -> checkError(tvLightLoginErrorUser)
             is PasswordEmptyException -> checkError(tvLightLoginErrorPassword)
@@ -216,7 +218,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
 
     override fun onNormalFirstTime(data: EmaHomeState) {
         when(data.defaultTitle){
-            INT_ZERO -> tvLoginWelcome.text = getString(R.string.app_name)
+            INT_ZERO -> binding.tvLoginWelcome.text = getString(R.string.app_name)
         }
     }
 

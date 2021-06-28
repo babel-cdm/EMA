@@ -5,9 +5,10 @@ import androidx.recyclerview.widget.RecyclerView
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.checkVisibility
 import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.databinding.FragmentBackBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
+import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
-import kotlinx.android.synthetic.main.fragment_back.*
 import org.kodein.di.generic.instance
 
 /**
@@ -22,6 +23,9 @@ import org.kodein.di.generic.instance
 
 class EmaBackUserFragment : BaseFragment<EmaBackUserState, EmaBackUserViewModel, EmaBackNavigator.Navigation>() {
 
+    override val layoutId: Int  = R.layout.fragment_back
+    private val binding by viewBinding(FragmentBackBinding::bind)
+
     private val adapter : EmaBackUserAdapter by lazy { EmaBackUserAdapter() }
 
     override fun onInitialized(viewModel: EmaBackUserViewModel) {
@@ -30,25 +34,23 @@ class EmaBackUserFragment : BaseFragment<EmaBackUserState, EmaBackUserViewModel,
     }
 
     private fun setupButton(viewModel: EmaBackUserViewModel) {
-        bBack.setOnClickListener {
+        binding.bBack.setOnClickListener {
             viewModel.onActionAddUser()
         }
     }
 
-    private fun setupRecycler() {
+    private fun setupRecycler() = with(binding) {
         rvBack.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
         rvBack.adapter = adapter
     }
 
     override val fragmentViewModelScope: Boolean = true
 
-    override val layoutId: Int  = R.layout.fragment_back
-
     override val viewModelSeed: EmaBackUserViewModel by instance()
 
     override val navigator: EmaBackNavigator by instance()
 
-    override fun onNormal(data: EmaBackUserState) {
+    override fun onNormal(data: EmaBackUserState) = with(binding) {
         adapter.updateList(data.listUsers)
         tvBackNoUsers.visibility = checkVisibility(data.noUserVisibility)
         rvBack.visibility = checkVisibility(!data.noUserVisibility, gone = false)
