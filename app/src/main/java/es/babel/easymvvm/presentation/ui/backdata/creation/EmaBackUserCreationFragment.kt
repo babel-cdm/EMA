@@ -4,9 +4,10 @@ import android.widget.Toast
 import es.babel.easymvvm.R
 import es.babel.easymvvm.core.extension.checkNull
 import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.databinding.FragmentBackResultBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
+import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
-import kotlinx.android.synthetic.main.fragment_back_result.*
 import org.kodein.di.generic.instance
 
 /**
@@ -23,12 +24,15 @@ import org.kodein.di.generic.instance
 
 class EmaBackUserCreationFragment : BaseFragment<EmaBackUserCreationState, EmaBackUserCreationViewModel, EmaBackNavigator.Navigation>() {
 
+    override val layoutId: Int = R.layout.fragment_back_result
+    private val binding by viewBinding(FragmentBackResultBinding::bind)
+
     override fun onInitialized(viewModel: EmaBackUserCreationViewModel) {
         setupButtons(viewModel)
         setupEditTexts(viewModel)
     }
 
-    private fun setupEditTexts(viewModel: EmaBackUserCreationViewModel) {
+    private fun setupEditTexts(viewModel: EmaBackUserCreationViewModel) = with(binding) {
 
         ///With EmaEditText is not necessary the following code to add a textwatcher to update the
         ///state in viewmodel
@@ -57,8 +61,7 @@ class EmaBackUserCreationFragment : BaseFragment<EmaBackUserCreationState, EmaBa
     }
 
 
-    private fun setupButtons(viewModel: EmaBackUserCreationViewModel) {
-
+    private fun setupButtons(viewModel: EmaBackUserCreationViewModel) = with(binding) {
         bBackResultAccept.setOnClickListener {
             val name = etBackResultName.text.toString()
             val surname = etBackResultSurname.text.toString()
@@ -69,13 +72,11 @@ class EmaBackUserCreationFragment : BaseFragment<EmaBackUserCreationState, EmaBa
         }
     }
 
-    override val layoutId: Int = R.layout.fragment_back_result
-
     override val viewModelSeed: EmaBackUserCreationViewModel by instance()
 
     override val navigator: EmaBackNavigator by instance()
 
-    override fun onNormal(data: EmaBackUserCreationState) {
+    override fun onNormal(data: EmaBackUserCreationState) = with(binding) {
 
         ///Using the EmaEditText it handles text updates to avoid infinite loops described in
         ///HomeViewFragment

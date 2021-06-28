@@ -3,11 +3,15 @@ package es.babel.easymvvm.presentation.ui.error
 import android.view.View
 import es.babel.easymvvm.R
 import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.databinding.FragmentErrorBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_error.*
+import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import org.kodein.di.generic.instance
 
 class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaErrorNavigator.Navigation>() {
+
+    override val layoutId: Int = R.layout.fragment_error
+    private val binding by viewBinding(FragmentErrorBinding::bind)
 
     /**
      * If you wouldn't want to use dependency injection you can provide it instantiating the class.
@@ -26,7 +30,7 @@ class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaE
         setupButtons(viewModel)
     }
 
-    private fun setupButtons(viewModel: EmaErrorViewModel) {
+    private fun setupButtons(viewModel: EmaErrorViewModel) = with(binding) {
         bErrorToolbar.setOnClickListener { viewModel.onActionToolbar() }
         bErrorAddUser.setOnClickListener { viewModel.onActionAddUser() }
     }
@@ -36,7 +40,7 @@ class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaE
     }
 
     private fun checkShowToolbarTriggerVisibility(data: EmaErrorState) {
-        bErrorToolbar.visibility = if (data.showToolbarViewVisibility) View.VISIBLE else View.GONE
+        binding.bErrorToolbar.visibility = if (data.showToolbarViewVisibility) View.VISIBLE else View.GONE
     }
 
     override fun onAlternative(data: EmaExtraData) {
@@ -47,8 +51,6 @@ class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaE
 
     override fun onError(error: Throwable) {
     }
-
-    override val layoutId: Int = R.layout.fragment_error
 
     override fun onNormalFirstTime(data: EmaErrorState) {
 

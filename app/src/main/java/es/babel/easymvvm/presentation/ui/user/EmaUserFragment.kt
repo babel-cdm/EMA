@@ -8,10 +8,10 @@ import es.babel.easymvvm.android.extension.getFormattedString
 import es.babel.easymvvm.android.navigation.EmaNavigator
 import es.babel.easymvvm.core.navigator.EmaNavigationState
 import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.databinding.FragmentUserBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
+import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import es.babel.easymvvm.presentation.ui.home.EmaHomeToolbarViewModel
-import kotlinx.android.synthetic.main.fragment_user.*
-import kotlinx.android.synthetic.main.layout_ema_header.*
 import org.kodein.di.generic.instance
 
 
@@ -31,6 +31,9 @@ import org.kodein.di.generic.instance
  */
 class EmaUserFragment : BaseFragment<EmaUserState, EmaUserViewModel, EmaNavigationState>() {
 
+    override val layoutId: Int = R.layout.fragment_user
+    private val binding by viewBinding(FragmentUserBinding::bind)
+
     override val navigator: EmaNavigator<EmaNavigationState>? = null
 
     private val toolbarViewModel: EmaHomeToolbarViewModel by instance()
@@ -44,13 +47,11 @@ class EmaUserFragment : BaseFragment<EmaUserState, EmaUserViewModel, EmaNavigati
 
     }
 
-    private fun setupRecycler(viewModel: EmaUserViewModel) {
+    private fun setupRecycler(viewModel: EmaUserViewModel) = with(binding) {
         adapter = EmaUserAdapter(viewModel)
         rvUser.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvUser.adapter = adapter
     }
-
-    override val layoutId: Int = R.layout.fragment_user
 
     override val viewModelSeed: EmaUserViewModel by instance()
 
@@ -97,8 +98,8 @@ class EmaUserFragment : BaseFragment<EmaUserState, EmaUserViewModel, EmaNavigati
     override fun onError(error: Throwable) {
     }
 
-    override fun onNormalFirstTime(data: EmaUserState) {
-        tvUserName.text = data.name
-        tvUserSurname.text = data.surname
+    override fun onNormalFirstTime(data: EmaUserState) = with(binding) {
+        lUserEmaHeader.tvUserName.text = data.name
+        lUserEmaHeader.tvUserSurname.text = data.surname
     }
 }

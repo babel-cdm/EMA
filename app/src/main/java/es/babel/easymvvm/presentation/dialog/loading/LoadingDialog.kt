@@ -3,7 +3,7 @@ package es.babel.easymvvm.presentation.dialog.loading
 import android.view.View
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.ui.dialog.EmaBaseDialog
-import kotlinx.android.synthetic.main.dialog_loading.view.*
+import es.babel.easymvvm.databinding.DialogLoadingBinding
 
 /**
  * Simple dialog
@@ -16,9 +16,15 @@ class LoadingDialog : EmaBaseDialog<LoadingDialogData>() {
     override val layoutId: Int = R.layout.dialog_loading
 
     override fun setupData(data: LoadingDialogData, view: View) {
-        view.tvDialogLoadingTitle.text = data.title
-        view.tvDialogLoadingMessage.text = data.message
+
+        val binding = DialogLoadingBinding.bind(view)
+
+        with(binding) {
+            tvDialogLoadingTitle.text = data.title
+            tvDialogLoadingMessage.text = data.message
+        }
 
         isCancelable = false
+        
     }
 }

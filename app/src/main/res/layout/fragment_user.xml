@@ -9,8 +9,7 @@
 
     <include
         android:id="@+id/lUserEmaHeader"
-        layout="@layout/layout_ema_header"
-        />
+        layout="@layout/layout_ema_header" />
 
     <TextView
         android:id="@+id/textView2"
@@ -23,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="@+id/lUserEmaHeader"
         app:layout_constraintStart_toStartOf="@+id/lUserEmaHeader"
         app:layout_constraintTop_toBottomOf="@+id/lUserEmaHeader" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUser"
