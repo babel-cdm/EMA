@@ -3,13 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion ema.compileSdk
-    buildToolsVersion ema.buildTools
 
     defaultConfig {
         minSdkVersion ema.minSdk
         targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -30,6 +27,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    namespace 'es.babel.data'
 
 }
 
