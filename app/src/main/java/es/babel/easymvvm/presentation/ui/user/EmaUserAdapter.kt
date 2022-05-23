@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.getFormattedString
 import es.babel.easymvvm.android.ui.EmaRecyclerAdapter
-import kotlinx.android.synthetic.main.item_left.view.*
-import kotlinx.android.synthetic.main.item_right.view.*
+import es.babel.easymvvm.databinding.ItemLeftBinding
+import es.babel.easymvvm.databinding.ItemRightBinding
 
 /**
  *
@@ -33,16 +33,19 @@ class EmaUserAdapter(private val viewModel: EmaUserViewModel,
 
     override fun View.bind(item: EmaUserItemModel, viewType: Int) {
 
+        val bindingLeft = ItemLeftBinding.bind(this)
+        val bindingRight = ItemRightBinding.bind(this)
+
         when (EmaUserItemModel.getFromId(viewType)) {
 
             EmaUserItemModel.Type.LEFT -> {
                 val leftItem = item as EmaUserLeftModel
-                tvItemLeft.text = R.string.user_name.getFormattedString(context,leftItem.name)
+                bindingLeft.tvItemLeft.text = R.string.user_name.getFormattedString(context,leftItem.name)
             }
 
             EmaUserItemModel.Type.RIGHT -> {
                 val rightItem = item as EmaUserRightModel
-                tvItemRight.text = R.string.user_number_people.getFormattedString(context,rightItem.number)
+                bindingRight.tvItemRight.text = R.string.user_number_people.getFormattedString(context,rightItem.number)
             }
         }
 
