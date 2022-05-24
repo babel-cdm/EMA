@@ -1,10 +1,5 @@
-
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'com.github.dcendents.android-maven'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 group = 'com.github.babel-cdm'
 
 android {
@@ -13,8 +8,6 @@ android {
         minSdkVersion ema.minSdk
         compileSdkVersion ema.compileSdk
         targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
     }
 
     buildTypes {
@@ -30,6 +23,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'es.babel.easymvvm.android'
 
 }
 
@@ -48,7 +42,6 @@ dependencies {
 
     //UI
     api emaAndroid.constraint
-    api emaAndroid.design
     api emaAndroid.material
 
     api project(path: ':easymvvm-core')

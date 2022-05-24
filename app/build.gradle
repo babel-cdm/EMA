@@ -6,7 +6,6 @@ plugins {
 }
 
 android {
-    buildToolsVersion ema.buildTools
     defaultConfig {
         applicationId "es.babel.ema"
         minSdkVersion ema.minSdk
@@ -40,11 +39,13 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
     packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/DEPENDENCIES']
+        }
     }
+    
+    namespace 'es.babel.easymvvm'
 
 }
 

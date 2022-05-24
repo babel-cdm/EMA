@@ -8,30 +8,28 @@ rootProject.ext {
 
     kodeinVersion = "6.5.5"
 
-    constraintVersion = "2.0.4"
+    constraintVersion = "2.1.3"
 
-    designVersion = "28.0.0"
+    materialVersion = "1.6.0"
 
-    materialVersion = "1.2.1"
+    coroutinesVersion = "1.6.1"
 
-    coroutinesVersion = "1.3.8"
+    testVersion = "1.4.0"
 
-    testVersion = "1.3.0"
+    extJUnitVersion = "1.1.3"
 
-    extJUnitVersion = "1.1.2"
+    mockitoVersion = "4.5.1"
 
-    mockitoVersion = "3.7.7"
+    archTesting = "2.1.0"
 
-    archTesting = "2.0.0"
-
-    espressoVersion = "3.3.0"
+    espressoVersion = "3.4.0"
 
 
     ema = [
             buildTools : "29.0.2",
             minSdk     : 21,
-            compileSdk : 28,
-            targetSdk  : 28,
+            compileSdk : 32,
+            targetSdk  : 32,
             versionCode: 24,
             versionName: "2.4.2"
     ]
@@ -68,14 +66,13 @@ rootProject.ext {
             rules      : "androidx.test:rules:" + project.testVersion,
             junitKotlin: "androidx.test.ext:junit-ktx:" + project.extJUnitVersion,
             mockito    : "org.mockito:mockito-core:" + project.mockitoVersion,
-            archTesting: "android.arch.core:core-testing:" + project.archTesting
+            archTesting: "androidx.arch.core:core-testing:" + project.archTesting
     ]
 
     emaAndroid = [
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:" + project.navigationVersion,
             navigationUI      : "androidx.navigation:navigation-ui-ktx:" + project.navigationVersion,
             constraint        : "androidx.constraintlayout:constraintlayout:" + project.constraintVersion,
-            design            : "com.android.support:design:" + project.designVersion,
             material          : "com.google.android.material:material:" + project.materialVersion,
             lifecycle         : "androidx.lifecycle:lifecycle-extensions:" + project.lifecycleVersion,
             lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:" + project.lifecycleVersion,
