@@ -1,8 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+}
 
 android {
     defaultConfig {
@@ -14,6 +15,9 @@ android {
         versionName ema.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    buildFeatures.viewBinding = true
+
     flavorDimensions 'default'
 
     buildTypes {
@@ -40,8 +44,9 @@ android {
             excludes += ['META-INF/LICENSE', 'META-INF/DEPENDENCIES']
         }
     }
-
+    
     namespace 'es.babel.easymvvm'
+
 }
 
 dependencies {

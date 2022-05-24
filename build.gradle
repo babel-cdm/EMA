@@ -2,6 +2,7 @@
 apply from: 'build-system/dependencies.gradle'
 
 buildscript {
+
     ext.kotlin_version = '1.6.21'
     ext.buildGradleVersion = '7.2.0'
     ext.safeArgsVersion = "1.0.0"
