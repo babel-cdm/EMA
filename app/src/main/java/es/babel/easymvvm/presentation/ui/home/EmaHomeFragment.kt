@@ -11,6 +11,7 @@ import es.babel.domain.exception.PasswordEmptyException
 import es.babel.domain.exception.UserEmptyException
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.checkUpdate
+import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.core.constants.INT_ZERO
 import es.babel.easymvvm.core.constants.STRING_EMPTY
 import es.babel.easymvvm.core.dialog.EmaDialogProvider
@@ -22,7 +23,6 @@ import es.babel.easymvvm.presentation.dialog.loading.LoadingDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogListener
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogProvider
-import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import org.kodein.di.generic.instance
 
 /**

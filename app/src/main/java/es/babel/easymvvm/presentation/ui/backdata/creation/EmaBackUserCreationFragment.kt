@@ -2,11 +2,11 @@ package es.babel.easymvvm.presentation.ui.backdata.creation
 
 import android.widget.Toast
 import es.babel.easymvvm.R
+import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.core.extension.checkNull
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.databinding.FragmentBackResultBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
-import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import es.babel.easymvvm.presentation.ui.backdata.EmaBackNavigator
 import org.kodein.di.generic.instance
 

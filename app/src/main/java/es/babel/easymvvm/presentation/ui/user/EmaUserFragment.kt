@@ -5,12 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.getFormattedString
+import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.android.navigation.EmaNavigator
 import es.babel.easymvvm.core.navigator.EmaNavigationState
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.databinding.FragmentUserBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
-import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import es.babel.easymvvm.presentation.ui.home.EmaHomeToolbarViewModel
 import org.kodein.di.generic.instance
 
