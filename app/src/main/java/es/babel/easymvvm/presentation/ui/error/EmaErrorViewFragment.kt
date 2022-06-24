@@ -9,6 +9,7 @@ import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.databinding.FragmentErrorBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
+import es.babel.easymvvm.presentation.ui.compose.ComposeViewActivity
 import org.kodein.di.generic.instance
 
 
