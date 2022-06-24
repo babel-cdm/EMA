@@ -26,6 +26,13 @@ rootProject.ext {
 
     espressoVersion = "3.4.0"
 
+    jetpackCompose = "1.2.0-rc02"
+
+    constraintCompose = "1.0.1"
+
+    appCompat = "1.4.2"
+
+    activityCompose = "1.4.0"
 
     ema = [
             buildTools : "29.0.2",
@@ -80,6 +87,22 @@ rootProject.ext {
             lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:" + project.lifecycleVersionJava8,
             kodein            : "org.kodein.di:kodein-di-generic-jvm:" + project.kodeinVersion,
             kodeinAndroid     : "org.kodein.di:kodein-di-framework-android-x:" + project.kodeinVersion,
+    ]
+
+    emaCompose = [
+            composeUI                   : "androidx.compose.ui:ui:" + project.jetpackCompose,
+            materialCompose             : "androidx.compose.material:material:" + project.jetpackCompose,
+            toolingComposePreview       : "androidx.compose.ui:ui-tooling-preview:" + project.jetpackCompose,
+            composeTooling              : "androidx.compose.ui:ui-tooling:" + project.jetpackCompose,
+            activityCompose             : "androidx.activity:activity-compose:" + project.activityCompose,
+            composeMaterialIcons        : "androidx.compose.material:material-icons-extended:" + project.jetpackCompose,
+            foundationCompose           : "androidx.compose.foundation:foundation:" + project.jetpackCompose,
+            foundationLayoutCompose     : "androidx.compose.foundation:foundation-layout:" + project.jetpackCompose,
+            animationCompose            : "androidx.compose.animation:animation:" + project.jetpackCompose,
+            runtimeCompose              : "androidx.compose.runtime:runtime:" + project.jetpackCompose,
+            constraintlayoutCompose     : "androidx.constraintlayout:constraintlayout-compose:" + project.constraintCompose,
+            material                    : "com.google.android.material:material:" + project.materialVersion,
+            appCompat                   : "androidx.appcompat:appcompat:" + project.appCompat
     ]
 
 }
