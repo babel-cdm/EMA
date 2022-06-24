@@ -6,6 +6,19 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+/*import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp*/
 import es.babel.domain.exception.LoginException
 import es.babel.domain.exception.PasswordEmptyException
 import es.babel.domain.exception.UserEmptyException
@@ -56,6 +69,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
     override fun onInitialized(viewModel: EmaHomeViewModel) {
         setupButtons(viewModel)
         setupDialog(viewModel)
+        setUpComposeViews()
     }
 
     private fun setupDialog(viewModel: EmaHomeViewModel) {
@@ -146,6 +160,19 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
                 ))
     }
 
+    private fun setUpComposeViews() = with(binding) {
+
+        //We tell ComposeView what its content is, we can include it directly,
+        // or we can create a Composable function in which we introduce our design
+        tvLoginWelcomeTextCompose?.setContent {
+            Text(
+                modifier = Modifier.padding(top = 15.dp),
+                text = stringResource(id = R.string.home_identify),
+                fontSize = 14.sp
+            )
+        }
+
+    }
 
     override fun onNormal(data: EmaHomeState) = with(binding) {
 
