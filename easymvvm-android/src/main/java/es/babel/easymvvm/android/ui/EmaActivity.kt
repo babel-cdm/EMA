@@ -60,7 +60,7 @@ abstract class EmaActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      * Activity result function to execute the viewmodel function when activity result is received.
      */
     private val resultActivityFunctions: HashMap<Int, ((Int, Int, Intent?) -> Unit)> by lazy {
-        hashMapOf<Int, ((Int, Int, Intent?) -> Unit)>()
+        hashMapOf()
     }
 
     /**
@@ -125,7 +125,7 @@ abstract class EmaActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      * The map which handles the view model attached with their respective scopes, to unbind the observers
      * when the view activity is destroyed
      */
-    private val extraViewModelMap: MutableList<EmaViewModel<*, *>> by lazy { mutableListOf<EmaViewModel<*, *>>() }
+    private val extraViewModelMap: MutableList<EmaViewModel<*, *>> by lazy { mutableListOf() }
 
     /**
      * Previous state for comparing state properties update
@@ -136,7 +136,6 @@ abstract class EmaActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaN
      * @param viewModelAttachedSeed is the view model seed will used as factory instance if there is no previous
      * view model retained by the OS
      * @param fragment the fragment scope
-     * @param fragmentActivity the activity scope, if it is provided this will be the scope of the view model attached
      * @param observerFunction the observer of the view model attached
      * @return The view model attached
      */
