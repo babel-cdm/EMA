@@ -1,6 +1,7 @@
 package es.babel.easymvvm.presentation.ui.home
 
 import android.widget.Toast
+import androidx.navigation.NavController
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.DATE_FORMAT_HHMM
 import es.babel.easymvvm.android.extension.getFormattedString
@@ -30,7 +31,7 @@ class EmaHomeActivity : BaseActivity<EmaHomeToolbarState, EmaHomeToolbarViewMode
 
     }
 
-    override fun provideFixedToolbarTitle(): String? = getString(R.string.home_toolbar_title)
+    override fun provideFixedToolbarTitle(): String = getString(R.string.home_toolbar_title)
 
     /**
      * Variable used to enable the theme used in manifest. Otherwise it will use the EmaTheme,

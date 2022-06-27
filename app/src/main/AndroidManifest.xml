@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity
+            android:name=".presentation.ui.compose.ComposeViewActivity"
+            android:exported="false" />
         <activity
             android:name="es.babel.easymvvm.presentation.ui.home.EmaHomeActivity"
             android:exported="true">
@@ -21,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.ui.error.EmaErrorToolbarViewActivity"
             android:launchMode="singleInstance" />

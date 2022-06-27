@@ -1,12 +1,17 @@
 package es.babel.easymvvm.presentation.ui.error
 
+import android.content.Intent
 import android.view.View
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import es.babel.easymvvm.R
 import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.databinding.FragmentErrorBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
+import es.babel.easymvvm.presentation.ui.compose.ComposeViewActivity
 import org.kodein.di.generic.instance
+
 
 class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaErrorNavigator.Navigation>() {
 
@@ -33,6 +38,13 @@ class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaE
     private fun setupButtons(viewModel: EmaErrorViewModel) = with(binding) {
         bErrorToolbar.setOnClickListener { viewModel.onActionToolbar() }
         bErrorAddUser.setOnClickListener { viewModel.onActionAddUser() }
+        btnComposableView.setContent {
+            Button(
+                onClick = {
+                    startActivity(Intent(requireContext(), ComposeViewActivity::class.java))
+                }
+            ) { Text(text = "Open Composable View") }
+        }
     }
 
     override fun onNormal(data: EmaErrorState) {

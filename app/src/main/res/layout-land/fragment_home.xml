@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="@+id/bLightLoginSign"
         app:layout_constraintStart_toStartOf="@+id/bLightLoginSign"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/bLightLoginSign"
         style="@style/ButtonRed"
         android:layout_width="0dp"

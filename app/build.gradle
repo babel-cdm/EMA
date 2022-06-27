@@ -16,7 +16,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures.viewBinding = true
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
+
+    composeOptions.kotlinCompilerExtensionVersion = "1.2.0-rc02"
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 
     flavorDimensions 'default'
 
@@ -56,4 +62,19 @@ dependencies {
     implementation project(path: ':injection')
 
     implementation project(path: ':easymvvm-android')
+
+    implementation emaCompose.composeUI
+    implementation emaCompose.materialCompose
+    implementation emaCompose.toolingComposePreview
+    implementation emaCompose.composeTooling
+    implementation emaCompose.activityCompose
+    implementation emaCompose.composeMaterialIcons
+    implementation emaCompose.foundationCompose
+    implementation emaCompose.foundationLayoutCompose
+    implementation emaCompose.animationCompose
+    implementation emaCompose.runtimeCompose
+    implementation emaCompose.constraintlayoutCompose
+    implementation emaCompose.material
+    implementation emaCompose.appCompat
+
 }
