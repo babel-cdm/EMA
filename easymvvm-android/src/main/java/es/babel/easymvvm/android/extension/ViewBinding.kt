@@ -1,4 +1,4 @@
-package es.babel.easymvvm.presentation.extensions.viewbinding
+package es.babel.easymvvm.android.extension
 
 import android.view.LayoutInflater
 import android.view.View

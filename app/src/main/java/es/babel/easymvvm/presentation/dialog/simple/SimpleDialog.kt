@@ -6,7 +6,6 @@ import es.babel.easymvvm.android.ui.dialog.EmaBaseBottomSheetDialog
 import es.babel.easymvvm.databinding.DialogSimpleBinding
 import es.babel.easymvvm.databinding.FragmentUserBinding
 import es.babel.easymvvm.databinding.ItemBackUserBinding
-import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 
 /**
  * Simple dialog

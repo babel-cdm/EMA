@@ -2,10 +2,10 @@ package es.babel.easymvvm.presentation.ui.error
 
 import android.view.View
 import es.babel.easymvvm.R
+import es.babel.easymvvm.android.extension.viewBinding
 import es.babel.easymvvm.core.state.EmaExtraData
 import es.babel.easymvvm.databinding.FragmentErrorBinding
 import es.babel.easymvvm.presentation.base.BaseFragment
-import es.babel.easymvvm.presentation.extensions.viewbinding.viewBinding
 import org.kodein.di.generic.instance
 
 class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaErrorNavigator.Navigation>() {
