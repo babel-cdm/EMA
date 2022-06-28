@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import es.babel.easymvvm.android.R
-import es.babel.easymvvm.android.databinding.EmaActivityFragmentBinding
 
 /**
  * Abstract class to handle navigation in activity
@@ -63,7 +62,5 @@ abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding<ViewBinding>(
     }
 
     override val layoutId: Int = R.layout.ema_activity_fragment
-
-    override val bindingId: ViewBinding = EmaActivityFragmentBinding.inflate(layoutInflater)
 
 }

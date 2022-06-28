@@ -25,20 +25,20 @@ abstract class EmaBaseActivityBinding<B : ViewBinding> : AppCompatActivity(), Na
     }
 
     /**
-     * The onCreate base will set the view specified in [binding] and will
+     * The onCreate base will set the view specified in [bindingId] and will
      * inject dependencies and views.
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(bindingId.root)
+        if (bindingId != null) setContentView(bindingId?.root)
         onCreateActivity(savedInstanceState)
     }
 
     /**
      * @return The binding that's gonna be the activity view.
      */
-    protected abstract val bindingId: B
+    protected abstract val bindingId: B?
 
     /**
      * @return The layout ID that's gonna be the activity view [Deprecated]
