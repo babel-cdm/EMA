@@ -16,8 +16,6 @@ import org.kodein.di.android.closestKodein
  */
 abstract class EmaBaseActivityBinding<B : ViewBinding> : AppCompatActivity(), NavHost, KodeinAware {
 
-    lateinit var binding: B
-
     private val parentKodein by closestKodein()
     override val kodein: Kodein = Kodein.lazy {
         extend(parentKodein)
@@ -33,15 +31,19 @@ abstract class EmaBaseActivityBinding<B : ViewBinding> : AppCompatActivity(), Na
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = getViewBinding()
-        setContentView(binding.root)
+        setContentView(bindingId.root)
         onCreateActivity(savedInstanceState)
     }
 
     /**
      * @return The binding that's gonna be the activity view.
      */
-    protected abstract fun getViewBinding(): B
+    protected abstract val bindingId: B
+
+    /**
+     * @return The layout ID that's gonna be the activity view [Deprecated]
+     */
+    protected abstract val layoutId: Int
 
     /**
      * Method called once the content view of activity has been set

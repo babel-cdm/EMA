@@ -62,6 +62,8 @@ abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding<ViewBinding>(
         return findViewById(R.id.navHostFragment)
     }
 
-    override fun getViewBinding(): ViewBinding = EmaActivityFragmentBinding.inflate(layoutInflater)
+    override val layoutId: Int = R.layout.ema_activity_fragment
+
+    override val bindingId: ViewBinding = EmaActivityFragmentBinding.inflate(layoutInflater)
 
 }
