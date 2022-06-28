@@ -3,6 +3,7 @@ package es.babel.easymvvm.android.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHost
+import androidx.viewbinding.ViewBinding
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -13,7 +14,9 @@ import org.kodein.di.android.closestKodein
  * to handle dependency injection
  *
  */
-abstract class EmaBaseActivityBinding : AppCompatActivity(), NavHost, KodeinAware {
+abstract class EmaBaseActivityBinding<B : ViewBinding> : AppCompatActivity(), NavHost, KodeinAware {
+
+    lateinit var binding: B
 
     private val parentKodein by closestKodein()
     override val kodein: Kodein = Kodein.lazy {
@@ -24,13 +27,21 @@ abstract class EmaBaseActivityBinding : AppCompatActivity(), NavHost, KodeinAwar
     }
 
     /**
-     * The onCreate base will inject dependencies and views.
+     * The onCreate base will set the view specified in [binding] and will
+     * inject dependencies and views.
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = getViewBinding()
+        setContentView(binding.root)
         onCreateActivity(savedInstanceState)
     }
+
+    /**
+     * @return The binding that's gonna be the activity view.
+     */
+    protected abstract fun getViewBinding(): B
 
     /**
      * Method called once the content view of activity has been set

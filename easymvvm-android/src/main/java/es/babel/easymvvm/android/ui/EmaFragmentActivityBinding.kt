@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.viewbinding.ViewBinding
 import es.babel.easymvvm.android.R
+import es.babel.easymvvm.android.databinding.EmaActivityFragmentBinding
 
 /**
  * Abstract class to handle navigation in activity
  *
  *
  */
-abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding() {
+abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding<ViewBinding>() {
 
     override fun onCreateActivity(savedInstanceState: Bundle?) {
         setupNavigation()
@@ -59,5 +61,7 @@ abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding() {
     protected fun getContentLayout(): View {
         return findViewById(R.id.navHostFragment)
     }
+
+    override fun getViewBinding(): ViewBinding = EmaActivityFragmentBinding.inflate(layoutInflater)
 
 }
