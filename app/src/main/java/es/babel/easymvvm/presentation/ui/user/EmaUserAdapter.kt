@@ -33,8 +33,9 @@ class EmaUserAdapter(private val viewModel: EmaUserViewModel,
 
     override fun View.bind(item: EmaUserItemModel, viewType: Int) {
 
-        val bindingLeft = ItemLeftBinding.bind(this)
-        val bindingRight = ItemRightBinding.bind(this)
+
+        val bindingLeft = ItemLeftBinding.inflate(LayoutInflater.from(context), null, false)
+        val bindingRight = ItemRightBinding.inflate(LayoutInflater.from(context), null, false)
 
         when (EmaUserItemModel.getFromId(viewType)) {
 
