@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:width="@dimen/custom_switch_size"
+        android:height="@dimen/custom_switch_size" />
+    <stroke
+        android:width="@dimen/custom_switch_thumb_stroke_width"
+        android:color="@color/colorAccent" />
+    <solid android:color="@color/colorAccent" />
+</shape>

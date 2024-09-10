@@ -77,47 +77,50 @@
         app:layout_constraintStart_toStartOf="@+id/layoutLightLoginTitular"
         app:layout_constraintTop_toBottomOf="@+id/layoutLightLoginTitular" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llLightLoginRememberUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_big_medium"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/layoutLightLoginTitular"
         app:layout_constraintStart_toStartOf="@+id/layoutLightLoginTitular"
         app:layout_constraintTop_toBottomOf="@+id/tvLightLoginErrorPassword">
 
-        <Switch
+        <es.babel.easymvvm.presentation.ui.common.CustomSwitchView
             android:id="@+id/swLightLoginRememberPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0"
-            android:trackTint="@color/colorAccent"
-            android:thumbTint="@color/white"
-            android:checked="true" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvLightLoginRememberPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/space_tiny"
             android:text="@string/home_remember_user"
             android:textSize="@dimen/letter_small_medium"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/swLightLoginRememberPassword"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bLightLoginSign"
             style="@style/ButtonRed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:maxLines="1"
             android:ellipsize="end"
-            android:text="@string/home_access" />
+            android:maxLines="1"
+            android:text="@string/home_access"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvLightLoginRememberPassword"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

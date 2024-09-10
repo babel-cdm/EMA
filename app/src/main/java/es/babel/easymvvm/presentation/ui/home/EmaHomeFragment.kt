@@ -36,6 +36,7 @@ import es.babel.easymvvm.presentation.dialog.loading.LoadingDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogData
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogListener
 import es.babel.easymvvm.presentation.dialog.simple.SimpleDialogProvider
+import es.babel.easymvvm.presentation.ui.common.CustomSwitchView
 import org.kodein.di.generic.instance
 
 /**
@@ -90,7 +91,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
     }
 
     private fun setupButtons(viewModel: EmaHomeViewModel) = with(binding) {
-        swLightLoginRememberPassword.setOnCheckedChangeListener { _, isChecked -> viewModel.onActionRemember(isChecked) }
+        swLightLoginRememberPassword.setListener{ isChecked -> viewModel.onActionRemember(isChecked)}
         layoutLightLoginCarPlate.ivHomeTouchEmptyUser.setOnClickListener { viewModel.onActionDeleteUser() }
         layoutLightLoginTitular.ivHomePassEmptyPassword.setOnClickListener { viewModel.onActionDeletePassword() }
         layoutLightLoginTitular.ivHomePassSeePassword.setOnClickListener { viewModel.onActionShowPassword() }
@@ -208,7 +209,7 @@ class EmaHomeFragment : BaseFragment<EmaHomeState, EmaHomeViewModel, EmaHomeNavi
 
         //////////////////////////////////////////////////////////////////////
 
-        swLightLoginRememberPassword.isChecked = data.rememberUser
+        (swLightLoginRememberPassword as CustomSwitchView).setChecked(data.rememberUser)
 
         data.showPassword.let {
 

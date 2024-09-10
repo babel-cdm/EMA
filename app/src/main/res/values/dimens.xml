@@ -38,4 +38,10 @@
     <dimen name="button_min_height_lda">30dp</dimen>
     <dimen name="stroke_width_edittext">3dp</dimen>
 
+
+    <!-- Custom Switch -->
+    <dimen name="custom_switch_corner_radius">13.8dp</dimen>
+    <dimen name="custom_switch_size">27.6dp</dimen>
+    <dimen name="custom_switch_thumb_stroke_width">4.6dp</dimen>
+
 </resources>

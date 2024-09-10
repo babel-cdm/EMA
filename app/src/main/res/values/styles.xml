@@ -99,4 +99,10 @@
         <item name="android:inputType">textPassword</item>
     </style>
 
+    <!-- Switch -->
+    <style name="CustomSwitchView">
+        <item name="android:thumb">@drawable/shape_custom_switch_thumb</item>
+        <item name="android:track">@drawable/selector_custom_switch_track</item>
+    </style>
+
 </resources>
