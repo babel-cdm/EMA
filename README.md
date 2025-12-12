@@ -23,8 +23,8 @@ Add the **EMA** dependencies
   >
 
     dependencies {
-          implementation 'com.github.babel-cdm.ema:easymvvm-core:2.5.0'
-          implementation 'com.github.babel-cdm.ema:easymvvm-android:2.5.0'
+          implementation 'com.github.babel-cdm.ema:easymvvm-core:2.5.1'
+          implementation 'com.github.babel-cdm.ema:easymvvm-android:2.5.1'
     }
 
 To use **test support library** add the following ones:
@@ -32,6 +32,6 @@ To use **test support library** add the following ones:
   >
 
     dependencies {
-          implementation  'com.github.babel-cdm.ema:easymvvm-testing-core:2.5.0'
-          implementation  'com.github.babel-cdm.ema:easymvvm-testing-android:2.5.0'
+          implementation  'com.github.babel-cdm.ema:easymvvm-testing-core:2.5.1'
+          implementation  'com.github.babel-cdm.ema:easymvvm-testing-android:2.5.1'
     }
