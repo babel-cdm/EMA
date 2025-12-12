@@ -45,7 +45,14 @@ interface EmaNavigator<NS : EmaNavigationState> : EmaBaseNavigator<NS> {
      * @param navOptions
      */
     fun navigateWithAction(@IdRes actionID: Int, data: Bundle? = null, navOptions: NavOptions? = null) {
-        navController.navigate(actionID, data, navOptions)
+        val currentDestination = navController.currentDestination
+        val action = currentDestination?.getAction(actionID)
+
+        if (action != null) {
+            if (currentDestination.id != action.destinationId) {
+                navController.navigate(actionID, data, navOptions)
+            }
+        }
     }
 
 
@@ -86,7 +93,15 @@ interface EmaNavigator<NS : EmaNavigationState> : EmaBaseNavigator<NS> {
      * @param navOptions
      */
     fun navigateWithDirections(navDirections: NavDirections, navOptions: NavOptions? = null) {
-        navController.navigate(navDirections, navOptions)
+        val currentDestination = navController.currentDestination
+        val actionId = navDirections.actionId
+        val action = currentDestination?.getAction(actionId)
+
+        if (action != null) {
+            if (currentDestination.id != action.destinationId) {
+                navController.navigate(navDirections, navOptions)
+            }
+        }
     }
 
 
