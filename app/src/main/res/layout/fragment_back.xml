@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/bBack"
         style="@style/ButtonGreen"
         android:layout_width="0dp"

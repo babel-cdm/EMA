@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.babel-cdm'
 
 android {
@@ -9,8 +8,6 @@ android {
         minSdkVersion ema.minSdk
         compileSdkVersion ema.compileSdk
         targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
     }
 
     buildTypes {
@@ -23,13 +20,21 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/DEPENDENCIES']
+        }
+    }
+
+    namespace 'es.babel.easymvvm.testing.android'
 
 }
 

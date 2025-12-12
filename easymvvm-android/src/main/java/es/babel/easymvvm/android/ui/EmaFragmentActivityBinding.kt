@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.viewbinding.ViewBinding
 import es.babel.easymvvm.android.R
 
 /**
  * Abstract class to handle navigation in activity
  *
  *
- * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
  */
-abstract class EmaFragmentActivity : EmaBaseActivity() {
+abstract class EmaFragmentActivityBinding : EmaBaseActivityBinding<ViewBinding>() {
 
     override fun onCreateActivity(savedInstanceState: Bundle?) {
         setupNavigation()
@@ -53,4 +53,5 @@ abstract class EmaFragmentActivity : EmaBaseActivity() {
     }
 
     override val layoutId: Int = R.layout.ema_activity_fragment
+
 }

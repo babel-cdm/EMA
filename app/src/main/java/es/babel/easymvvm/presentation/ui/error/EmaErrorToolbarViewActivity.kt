@@ -3,14 +3,14 @@ package es.babel.easymvvm.presentation.ui.error
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import es.babel.easymvvm.R
-import es.babel.easymvvm.android.ui.EmaActivity
-import es.babel.easymvvm.core.state.EmaExtraData
-import es.babel.easymvvm.presentation.injection.activityInjection
 import es.babel.easymvvm.android.extension.dpToPx
 import es.babel.easymvvm.android.extension.getColorCompat
 import es.babel.easymvvm.android.extension.getFormattedString
-import es.babel.easymvvm.presentation.ui.backdata.EmaBackToolbarState
+import es.babel.easymvvm.android.ui.EmaActivity
+import es.babel.easymvvm.core.state.EmaExtraData
+import es.babel.easymvvm.presentation.injection.activityInjection
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 import kotlin.math.roundToInt
@@ -28,7 +28,7 @@ class EmaErrorToolbarViewActivity : EmaActivity<EmaErrorToolbarState, EmaErrorTo
 
     override val navGraph: Int = R.navigation.navigation_ema_error
 
-    override fun provideFixedToolbarTitle(): String? = getString(R.string.error_toolbar_title)
+    override fun provideFixedToolbarTitle(): String = getString(R.string.error_toolbar_title)
 
     override val viewModelSeed: EmaErrorToolbarViewModel by instance()
 
@@ -49,7 +49,7 @@ class EmaErrorToolbarViewActivity : EmaActivity<EmaErrorToolbarState, EmaErrorTo
         toolbar.apply {
             val whiteColor = android.R.color.white.getColorCompat(applicationContext)
             setBackgroundColor(R.color.colorPrimary.getColorCompat(applicationContext))
-            logo = getDrawable(R.drawable.ic_error_toolbar)
+            logo =  AppCompatResources.getDrawable(context, R.drawable.ic_error_toolbar)
             setTitleTextColor(whiteColor)
             titleMarginStart = resources.getDimension(R.dimen.space_medium).roundToInt().dpToPx(context)
 
@@ -80,7 +80,7 @@ class EmaErrorToolbarViewActivity : EmaActivity<EmaErrorToolbarState, EmaErrorTo
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_error, menu)
         return true
     }

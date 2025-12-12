@@ -17,7 +17,7 @@ abstract class EmaTest {
 
     @Before
     open fun setup() {
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
         onSetup()
         runBlocking {
             onSetupSuspend()

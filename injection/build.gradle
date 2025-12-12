@@ -1,16 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
+
 android {
 
     compileSdkVersion ema.compileSdk
-    buildToolsVersion ema.buildTools
 
     defaultConfig {
         minSdkVersion ema.minSdk
         targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -25,13 +26,21 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/DEPENDENCIES']
+        }
+    }
+
+    namespace 'es.babel.injection'
 
 }
 

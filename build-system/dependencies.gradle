@@ -2,45 +2,52 @@ rootProject.ext {
 
     //Libraries
 
-    navigationVersion = "2.3.3"
+    navigationVersion = "2.4.2"
 
     lifecycleVersion = "2.2.0"
 
+    lifecycleVersionJava8 = "2.3.1"
+
     kodeinVersion = "6.5.5"
 
-    constraintVersion = "2.0.4"
+    constraintVersion = "2.1.4"
 
-    designVersion = "28.0.0"
+    materialVersion = "1.6.1"
 
-    materialVersion = "1.2.1"
+    coroutinesVersion = "1.6.3"
 
-    coroutinesVersion = "1.3.8"
+    testVersion = "1.4.0"
 
-    testVersion = "1.3.0"
+    extJUnitVersion = "1.1.3"
 
-    extJUnitVersion = "1.1.2"
+    mockitoVersion = "4.5.1"
 
-    mockitoVersion = "3.7.7"
+    archTesting = "2.1.0"
 
-    archTesting = "2.0.0"
+    espressoVersion = "3.4.0"
 
-    espressoVersion = "3.3.0"
+    jetpackCompose = "1.2.0-rc02"
 
+    constraintCompose = "1.0.1"
+
+    appCompat = "1.4.2"
+
+    activityCompose = "1.4.0"
 
     ema = [
             buildTools : "29.0.2",
             minSdk     : 21,
-            compileSdk : 28,
-            targetSdk  : 28,
+            compileSdk : 32,
+            targetSdk  : 32,
             versionCode: 24,
-            versionName: "2.4.2"
+            versionName: "2.5.0"
     ]
 
     appDependencies = [
     ]
 
     dataDependencies = [
-            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:" + project.kotlin_version,
             coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
     ]
 
@@ -56,7 +63,7 @@ rootProject.ext {
     ]
 
     emaCore = [
-            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:" + project.kotlin_version,
             coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
     ]
 
@@ -68,18 +75,34 @@ rootProject.ext {
             rules      : "androidx.test:rules:" + project.testVersion,
             junitKotlin: "androidx.test.ext:junit-ktx:" + project.extJUnitVersion,
             mockito    : "org.mockito:mockito-core:" + project.mockitoVersion,
-            archTesting: "android.arch.core:core-testing:" + project.archTesting
+            archTesting: "androidx.arch.core:core-testing:" + project.archTesting
     ]
 
     emaAndroid = [
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:" + project.navigationVersion,
             navigationUI      : "androidx.navigation:navigation-ui-ktx:" + project.navigationVersion,
             constraint        : "androidx.constraintlayout:constraintlayout:" + project.constraintVersion,
-            design            : "com.android.support:design:" + project.designVersion,
             material          : "com.google.android.material:material:" + project.materialVersion,
             lifecycle         : "androidx.lifecycle:lifecycle-extensions:" + project.lifecycleVersion,
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:" + project.lifecycleVersionJava8,
             kodein            : "org.kodein.di:kodein-di-generic-jvm:" + project.kodeinVersion,
             kodeinAndroid     : "org.kodein.di:kodein-di-framework-android-x:" + project.kodeinVersion,
+    ]
+
+    emaCompose = [
+            composeUI                   : "androidx.compose.ui:ui:" + project.jetpackCompose,
+            materialCompose             : "androidx.compose.material:material:" + project.jetpackCompose,
+            toolingComposePreview       : "androidx.compose.ui:ui-tooling-preview:" + project.jetpackCompose,
+            composeTooling              : "androidx.compose.ui:ui-tooling:" + project.jetpackCompose,
+            activityCompose             : "androidx.activity:activity-compose:" + project.activityCompose,
+            composeMaterialIcons        : "androidx.compose.material:material-icons-extended:" + project.jetpackCompose,
+            foundationCompose           : "androidx.compose.foundation:foundation:" + project.jetpackCompose,
+            foundationLayoutCompose     : "androidx.compose.foundation:foundation-layout:" + project.jetpackCompose,
+            animationCompose            : "androidx.compose.animation:animation:" + project.jetpackCompose,
+            runtimeCompose              : "androidx.compose.runtime:runtime:" + project.jetpackCompose,
+            constraintlayoutCompose     : "androidx.constraintlayout:constraintlayout-compose:" + project.constraintCompose,
+            material                    : "com.google.android.material:material:" + project.materialVersion,
+            appCompat                   : "androidx.appcompat:appcompat:" + project.appCompat
     ]
 
 }

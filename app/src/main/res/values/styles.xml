@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -97,6 +97,12 @@
     <style name="EditTextPasswordHome" parent="EditText">
         <item name="android:layout_marginTop">@dimen/space_small_medium</item>
         <item name="android:inputType">textPassword</item>
+    </style>
+
+    <!-- Switch -->
+    <style name="CustomSwitchView">
+        <item name="android:thumb">@drawable/shape_custom_switch_thumb</item>
+        <item name="android:track">@drawable/selector_custom_switch_track</item>
     </style>
 
 </resources>

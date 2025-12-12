@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.babel.injection" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" />

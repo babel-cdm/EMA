@@ -1,4 +1,4 @@
-package es.babel.easymvvm.presentation.ui.backdata;
+package es.babel.easymvvm.presentation.ui.backdata
 
 import androidx.core.content.ContextCompat
 import es.babel.easymvvm.R

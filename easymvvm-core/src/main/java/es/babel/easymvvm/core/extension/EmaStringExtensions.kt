@@ -12,10 +12,6 @@ import es.babel.easymvvm.core.constants.STRING_EMPTY
  * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
  */
 
-fun String?.checkNull(defaultValue: String = STRING_EMPTY): String {
-    return this ?: defaultValue
-}
+fun String?.checkNull(defaultValue: String = STRING_EMPTY): String = this ?: defaultValue
 
-fun String.getFormattedString(vararg data: Any?): String {
-    return String.format(this, *data)
-}
+fun String.getFormattedString(vararg data: Any?): String = String.format(this, *data)

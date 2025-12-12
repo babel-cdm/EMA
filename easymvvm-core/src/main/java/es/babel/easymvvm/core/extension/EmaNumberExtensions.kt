@@ -1,37 +1,19 @@
 package es.babel.easymvvm.core.extension
 
-import es.babel.easymvvm.core.constants.*
-
 /**
- * Created by Carlos Mateo Benito on 2019-11-24.
- *
- * <p>
- * Copyright (c) 2019 by Babel Sistemas de Información. All rights reserved.
+ *  *<p>
+ * Copyright (c) 2020, Babel Sistemas de Información. All rights reserved.
  * </p>
  *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
  */
 
-fun Int?.checkNull(defaultValue: Int = INT_ZERO): Int {
-    return this ?: defaultValue
-}
+import es.babel.easymvvm.core.constants.*
+import java.util.Collections.emptyList
 
-fun Float?.checkNull(defaultValue: Float = FLOAT_ZERO): Float {
-    return this ?: defaultValue
-}
-
-fun Short?.checkNull(defaultValue: Short = SHORT_ZERO): Short {
-    return this ?: defaultValue
-}
-
-fun Long?.checNull(defaultValue: Long = LONG_ZERO): Long {
-    return this ?: defaultValue
-}
-
-fun Double?.checkNull(defaultValue: Double = DOUBLE_ZERO): Double {
-    return this ?: defaultValue
-}
-
-fun Boolean?.checkNull(defaultValue: Boolean = false): Boolean {
-    return this ?: defaultValue
-}
+fun Int?.checkNull(defaultValue: Int = INT_ZERO): Int =  this ?: defaultValue
+fun Float?.checkNull(defaultValue: Float = FLOAT_ZERO): Float = this ?: defaultValue
+fun Short?.checkNull(defaultValue: Short = SHORT_ZERO): Short =  this ?: defaultValue
+fun Long?.checNull(defaultValue: Long = LONG_ZERO): Long =  this ?: defaultValue
+fun Double?.checkNull(defaultValue: Double = DOUBLE_ZERO): Double = this ?: defaultValue
+fun Boolean?.checkNull(defaultValue: Boolean = false): Boolean =  this ?: defaultValue
+fun <T> List<T>?.checkNull(defaultValue: List<T> = emptyList()): List<T> =  this ?: defaultValue
