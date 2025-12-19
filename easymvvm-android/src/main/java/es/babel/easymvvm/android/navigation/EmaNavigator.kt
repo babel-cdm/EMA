@@ -49,12 +49,9 @@ interface EmaNavigator<NS : EmaNavigationState> : EmaBaseNavigator<NS> {
         val action = currentDestination?.getAction(actionID)
 
         if (action != null) {
-            if (currentDestination.id != action.destinationId) {
-                navController.navigate(actionID, data, navOptions)
-            }
+            navController.navigate(actionID, data, navOptions)
         }
     }
-
 
     /**
      * Navigate to new activity with result handling
